@@ -1,0 +1,99 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "subsystems/SwerveModule.h"
+#include "headers/Headers.h"
+
+SwerveModule::SwerveModule(const int driveMotorID,     const int angleMotorID,       const int angleEncoderID, double magnetOffset)
+					  : m_driveMotor{driveMotorID}, m_angleMotor{angleMotorID}, m_angleEncoder{angleEncoderID} {
+
+	m_driveMotor.ConfigFactoryDefault();
+
+	m_driveMotor.SetNeutralMode(NeutralMode::Brake);
+
+	m_driveMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor, 0, 0);
+
+	m_driveMotor.Config_kP(0, Drivetrain::Swerve::PID::Motor::Drive::P);
+	m_driveMotor.Config_kI(0, Drivetrain::Swerve::PID::Motor::Drive::I);
+	m_driveMotor.Config_kD(0, Drivetrain::Swerve::PID::Motor::Drive::D);
+	m_driveMotor.Config_kF(0, Drivetrain::Swerve::PID::Motor::Drive::F);
+
+	m_driveMotor.ConfigNominalOutputForward(0);
+	m_driveMotor.ConfigNominalOutputReverse(0);
+	m_driveMotor.ConfigPeakOutputForward(1);
+	m_driveMotor.ConfigPeakOutputReverse(-1);
+
+	m_angleMotor.ConfigFactoryDefault();
+
+	m_angleMotor.SetSensorPhase(true);
+	m_angleMotor.SetNeutralMode(NeutralMode::Brake);
+
+	m_angleMotor.ConfigFeedbackNotContinuous(true);
+	m_angleMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::RemoteSensor0, 0, 0);
+	m_angleMotor.ConfigRemoteFeedbackFilter(angleEncoderID, RemoteSensorSource(13), 0, 0);
+	m_angleMotor.ConfigIntegratedSensorAbsoluteRange(AbsoluteSensorRange::Unsigned_0_to_360);
+
+	m_angleMotor.Config_kP(0, Drivetrain::Swerve::PID::Motor::Angle::P);
+	m_angleMotor.Config_kI(0, Drivetrain::Swerve::PID::Motor::Angle::I);
+	m_angleMotor.Config_kD(0, Drivetrain::Swerve::PID::Motor::Angle::D);
+	m_angleMotor.Config_kF(0, Drivetrain::Swerve::PID::Motor::Angle::F);
+	m_angleMotor.Config_IntegralZone(0, 20);
+
+	m_angleMotor.ConfigNominalOutputForward(0);
+	m_angleMotor.ConfigNominalOutputReverse(0);
+	m_angleMotor.ConfigPeakOutputForward(1);
+	m_angleMotor.ConfigPeakOutputReverse(-1);
+
+	m_angleEncoder.ConfigFactoryDefault();
+	m_angleEncoder.ConfigMagnetOffset(magnetOffset);
+	m_angleEncoder.SetPositionToAbsolute();
+	m_angleEncoder.ConfigAbsoluteSensorRange(AbsoluteSensorRange::Unsigned_0_to_360);
+	
+	m_turningPIDController.EnableContinuousInput(0_deg, 360_deg);
+}
+
+frc::SwerveModuleState SwerveModule::GetState() {
+	auto speed = units::meters_per_second_t{(m_driveMotor.GetSelectedSensorVelocity() * 10) * Drivetrain::Swerve::Motor::Drive::distance_per_pulse.value()};
+	auto angle = frc::Rotation2d{units::degree_t{m_angleEncoder.GetAbsolutePosition()}};
+	return {speed, angle};
+}
+
+frc::SwerveModulePosition SwerveModule::GetPosition() {
+	return {units::meter_t{m_driveMotor.GetSelectedSensorPosition() * Drivetrain::Swerve::Motor::Drive::distance_per_pulse},
+			units::degree_t{m_angleEncoder.GetAbsolutePosition()}};
+}
+
+void SwerveModule::SetDesiredState(const frc::SwerveModuleState& referenceState, bool usePID) {
+	// Optimize the reference state to avoid spinning further than 90 degrees
+	state = frc::SwerveModuleState::Optimize(referenceState, units::degree_t{m_angleEncoder.GetAbsolutePosition()});
+
+	// Calculate the drive output from the drive PID controller.
+	driveOutputPID = m_drivePIDController.Calculate(((m_driveMotor.GetSelectedSensorVelocity()) * Drivetrain::Swerve::Motor::Drive::distance_per_pulse.value()), state.speed.value());
+	driveOutput = (state.speed.value() / Drivetrain::Movement::Maximum::Linear::Velocity.value());
+
+	// Calculate the turning motor output from the turning PID controller.
+	angleOutput = m_turningPIDController.Calculate(units::degree_t{m_angleEncoder.GetAbsolutePosition()}, state.angle.Degrees());
+	
+	switch(m_angleEncoder.GetDeviceNumber()){
+		case Drivetrain::Swerve::Module::Front::Right::Encoder: frc::SmartDashboard::PutNumber("FR Angle", m_angleEncoder.GetAbsolutePosition()); break;
+		case Drivetrain::Swerve::Module::Rear::Right::Encoder: frc::SmartDashboard::PutNumber("RR Angle", m_angleEncoder.GetAbsolutePosition()); break;
+		case Drivetrain::Swerve::Module::Rear::Left::Encoder: frc::SmartDashboard::PutNumber("RL Angle", m_angleEncoder.GetAbsolutePosition()); break;
+		case Drivetrain::Swerve::Module::Front::Left::Encoder: frc::SmartDashboard::PutNumber("FL Angle", m_angleEncoder.GetAbsolutePosition()); break;
+	}
+
+	// Set the motor outputs.
+	
+	if(usePID){
+		m_driveMotor.Set(driveOutput);
+		m_angleMotor.Set(-angleOutput);
+	}else{
+		m_driveMotor.Set(driveOutputPID);
+		m_angleMotor.Set(TalonFXControlMode::Position, -state.angle.Degrees().value() * (4096/360));
+	}
+}
+
+void SwerveModule::SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode mode){
+	m_driveMotor.SetNeutralMode(mode);
+	m_angleMotor.SetNeutralMode(mode);
+}
