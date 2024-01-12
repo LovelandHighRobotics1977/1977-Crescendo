@@ -21,11 +21,17 @@
 // Robot Program Framework
 #include <frc/TimedRobot.h>
 
-// CTRE Phoenix Hardware API
-#include <ctre/Phoenix.h>
+// CTRE Phoenix Hardware APIs
+#include <ctre/phoenix6/configs/Configs.hpp>
+#include <ctre/phoenix6/configs/Configurator.hpp>
+#include <ctre/phoenix6/CANcoder.hpp>
+#include <ctre/phoenix6/TalonFX.hpp>
 
 // REV Per-Device Hardware APIs
 #include <rev/CANSparkMax.h>
+
+// NavX AHRS Api
+#include "AHRS.h"
 
 // FRC PID Controller Libraries
 #include <frc/controller/PIDController.h>

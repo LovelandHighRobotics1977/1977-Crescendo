@@ -22,8 +22,8 @@ frc2::SequentialCommandGroup SwerveCommand::FollowPath(DriveSubsystem *drive, fr
 			Trajectory,
 			[drive]() { return drive->GetPose(); }, // BULLSHIT MAGIC NUMBER
 			drive->DriveKinematics,
-			frc2::PIDController{AutonomousMode::Controller::Proportional::Forward, 0, 0},
-			frc2::PIDController{AutonomousMode::Controller::Proportional::Strafe, 0, 0},
+			frc::PIDController{AutonomousMode::Controller::Proportional::Forward, 0, 0},
+			frc::PIDController{AutonomousMode::Controller::Proportional::Strafe, 0, 0},
 			RotationController,
 			[drive](auto moduleStates) { drive->SetModuleStates(moduleStates); },
 			{drive}
@@ -32,5 +32,5 @@ frc2::SequentialCommandGroup SwerveCommand::FollowPath(DriveSubsystem *drive, fr
 }
 
 frc2::InstantCommand SwerveCommand::ResetOdometry(DriveSubsystem *drive, frc::Pose2d pose) {
-	return frc2::InstantCommand([drive, pose] { drive->ResetOdometry(pose); });
+	return frc2::InstantCommand([drive, pose] { drive->ZeroOdometry(pose); });
 }

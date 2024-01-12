@@ -40,4 +40,14 @@ struct Trapezoid{
 	const frc::TrapezoidProfile<units::radians>::Constraints constraint;
 };
 
+struct swerveMotorOutput {
+	units::degree_t RawAngle;
+	double RawVelocity;
+	double PID;
+};
+
+
+
+
+
 #endif // _UTIL_H

@@ -1,9 +1,9 @@
 #ifndef _COMMANDS_SWERVE_H
 #define _COMMANDS_SWERVE_H
 
-#include "headers/Headers.h"
+#include "subsystems/Drivetrain/DriveSubsystem.h"
 
-#include "subsystems/DriveSubsystem.h"
+#include "headers/Headers.h"
 
 namespace SwerveCommand {
     frc2::SequentialCommandGroup FollowPath(DriveSubsystem *drive, frc::Pose2d startPose, std::vector<frc::Translation2d> waypoints, frc::Pose2d endPose);

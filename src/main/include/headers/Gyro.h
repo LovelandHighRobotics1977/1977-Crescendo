@@ -1,7 +1,6 @@
 #ifndef _GYRO_H
 #define _GYRO_H
 
-#include "AHRS.h"
 #include "Libraries.h"
 
 class Gyro {

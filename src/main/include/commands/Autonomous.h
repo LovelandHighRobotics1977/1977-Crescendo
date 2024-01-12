@@ -3,22 +3,12 @@
 
 #include "headers/Headers.h"
 
-#include "subsystems/DriveSubsystem.h"
-#include "subsystems/CubeArmSubsystem.h"
+#include "subsystems/Drivetrain/DriveSubsystem.h"
 
-#include "commands/ArmCommands.h"
 #include "commands/SwerveCommands.h"
 
 namespace AutoRoutine {
-    frc2::CommandPtr fireCubeOnly(DriveSubsystem *drive, CubeArmSubsystem *arm);
-
-    namespace Red {
-        frc2::CommandPtr DriveForward(DriveSubsystem *drive, CubeArmSubsystem *arm);
-        frc2::CommandPtr MidBalance(DriveSubsystem *drive, CubeArmSubsystem *arm);
-    }
-    namespace Blue {
-
-    }
+    frc2::CommandPtr test(DriveSubsystem *drive);
 }
 
 

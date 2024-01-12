@@ -108,12 +108,14 @@ namespace Drivetrain {
 				static constexpr double gear_ratio = 6.75;
 				static constexpr double encoder_cpr = 2048;
 				static const auto distance_per_pulse = (((2 * Measurements::Wheel::radius) * M_PI) / (gear_ratio * encoder_cpr));
+				static const auto distance_per_rotation = units::meter_t{distance_per_pulse * encoder_cpr};
 			}
 			namespace Angle {
 				static constexpr double max_rpm = 6380;
 				static constexpr double gear_ratio = 150/7;
 				static constexpr double encoder_cpr = 4096;
 				static constexpr auto distance_per_pulse = units::radian_t{((2 * M_PI) / (encoder_cpr))};
+				static const auto distance_per_rotation = units::degree_t{distance_per_pulse * encoder_cpr};
 			}
 		}
 	}
