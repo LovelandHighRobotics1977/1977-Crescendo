@@ -15,6 +15,7 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureDefaultCommands() {
 	m_driver.SetDefaultCommand(frc2::RunCommand( [this] { m_driver.update(); } , {&m_driver} ));
 	m_operator.SetDefaultCommand(frc2::RunCommand( [this] { m_operator.update(); } , {&m_operator} ));
+	/*
 	m_drive.SetDefaultCommand(frc2::RunCommand( 
 		[this] { m_drive.Drive({ 
 			m_driver.forward * Drivetrain::Movement::Maximum::Linear::Velocity, 
@@ -24,18 +25,19 @@ void RobotContainer::ConfigureDefaultCommands() {
 			Drivetrain::Movement::Rotate::Around::Center });}, 
 		{&m_drive}
 	));
+	*/
 }
 
 void RobotContainer::ConfigureButtonBindings() {
 	frc2::Trigger resetGyro([this] { return m_driver.gyro_reset; });
 	resetGyro.OnTrue(frc2::InstantCommand( [] {Gyro::GetInstance()->ahrs.Reset();} ).ToPtr());
 
-	frc2::Trigger pickupNote([this] { return true; });
-	pickupNote.WhileTrue(m_noteMechanism.PickupNote().ToPtr());
+	frc2::Trigger pickupNote([this] { return m_operator.shootNote; });
+	pickupNote.WhileTrue(m_noteMechanism.ShootNote().ToPtr());
 }
 
 void RobotContainer::ConfigureAutonomousChooser() {
-	m_chooser.SetDefaultOption("test", a_test.get());
+	//m_chooser.SetDefaultOption("test", a_test.get());
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() { 

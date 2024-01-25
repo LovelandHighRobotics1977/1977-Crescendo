@@ -101,9 +101,11 @@ class Operator : public frc2::SubsystemBase {
 		Operator(const int port):m_XboxController{port}{};
 
 		bool pickupNote;
+		bool shootNote;
 
 		void update(){
 			pickupNote = m_XboxController.GetAButton();
+			shootNote = m_XboxController.GetBButton();
 		}
 		
 	private:

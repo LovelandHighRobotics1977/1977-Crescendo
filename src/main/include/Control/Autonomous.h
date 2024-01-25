@@ -8,7 +8,7 @@
 #include "subsystems/Drivetrain/Commands.h"
 
 namespace AutoRoutine {
-    frc2::CommandPtr test(DriveSubsystem *drive);
+    //frc2::CommandPtr test(DriveSubsystem *drive);
 }
 
 

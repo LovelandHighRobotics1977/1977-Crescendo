@@ -29,7 +29,7 @@ class RobotContainer {
 		Operator m_operator{TeleoperatedMode::Controller::Ports::Operator};
 
 	// Subsystems
-		DriveSubsystem m_drive;
+		//DriveSubsystem m_drive;
 		NoteMechanism m_noteMechanism;
 
 	// Network Tables
@@ -40,7 +40,7 @@ class RobotContainer {
 		frc::SendableChooser<frc2::Command*> m_chooser;
 
 		// Auto routines
-		frc2::CommandPtr a_test = AutoRoutine::test(&m_drive);
+		//frc2::CommandPtr a_test = AutoRoutine::test(&m_drive);
 };
 
 #endif  // ROBOTCONTAINER_H

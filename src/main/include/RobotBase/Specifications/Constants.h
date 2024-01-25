@@ -146,9 +146,13 @@ namespace Drivetrain {
 }
 
 namespace Mechanism {
-	namespace Intake {
-		static constexpr int ID = 14;
+	static constexpr int Intake = 14;
+	namespace Shooter {
+		static constexpr int Right = 15;
+		static constexpr int Left = 16;
+		static constexpr int Angle = 17;
 	}
+	static constexpr int Climber = 18;
 }
 
 namespace AutonomousMode {

@@ -3,17 +3,20 @@
 
 #include "headers/Headers.h"
 #include "Intake.h"
+#include "Shooter.h"
 
 class NoteMechanism : public frc2::SubsystemBase {
 	public:
 		NoteMechanism();
 
-		frc2::StartEndCommand PickupNote();
+		//frc2::StartEndCommand PickupNote();
+		frc2::StartEndCommand ShootNote();
 
 
 	private:
 
-        Intake m_intake;
+        //Intake m_intake;
+		Shooter m_shooter;
 
 };
 
