@@ -69,10 +69,10 @@ void DriveSubsystem::SetModuleStates(wpi::array<frc::SwerveModuleState, 4> desir
 
 	DriveKinematics.DesaturateWheelSpeeds(&desiredStates, AutonomousMode::Parameter::Linear::Velocity);
 
-	m_frontLeft.SetDesiredState(desiredStates[0],false);
-	m_frontRight.SetDesiredState(desiredStates[1],false);
-	m_rearLeft.SetDesiredState(desiredStates[2],false);
-	m_rearRight.SetDesiredState(desiredStates[3],false);
+	m_frontLeft.SetDesiredState(desiredStates[0]);
+	m_frontRight.SetDesiredState(desiredStates[1]);
+	m_rearLeft.SetDesiredState(desiredStates[2]);
+	m_rearRight.SetDesiredState(desiredStates[3]);
 }
 
 frc::Rotation2d DriveSubsystem::GetHeading(){

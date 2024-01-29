@@ -6,7 +6,7 @@ Shooter::Shooter(){
     m_rightShooter.GetConfigurator().Apply(shooterMotorConfig);
 }
 
-void Shooter::setShooter(double speed){
-	m_leftShooter.Set(speed);
+void Shooter::setShooter(double speed, double spin){
+	m_leftShooter.Set(speed * spin);
     m_rightShooter.Set(-speed);
 }

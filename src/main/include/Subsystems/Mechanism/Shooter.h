@@ -7,7 +7,12 @@ class Shooter : public frc2::SubsystemBase {
 	public:
 		Shooter();
 
-		void setShooter(double speed);
+		/**
+		 * Sets the speed of the shooter motors
+		 * @param speed The speed of the shooter [ -1 -> 1 ] with -1 being full reverse and 1 being full forward
+		 * @param spin The spin of the shooter [ 0 -> 1 ] with 0 being full widdershins and 1 being no spin.  Defaults to 1
+		*/
+		void setShooter(double speed, double spin = 1);
 
 	private:
 

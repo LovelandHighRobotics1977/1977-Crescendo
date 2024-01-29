@@ -9,34 +9,25 @@
 
 class SwerveModule {
  public:
-	SwerveModule(int driveMotorID, int angleMotorID, int angleEncoderID, double magnetOffset);
+	SwerveModule(int driveMotorID, int angleMotorID, int angleEncoderID, units::turn_t magnetOffset);
 
 	frc::SwerveModuleState GetState();
 
 	frc::SwerveModulePosition GetPosition();
 
-	void SetDesiredState(const frc::SwerveModuleState& state, bool Teleop = true);
+	void SetDesiredState(const frc::SwerveModuleState& state);
 
  private:
 
 	ctre::phoenix6::hardware::TalonFX m_driveMotor;
 	ctre::phoenix6::configs::TalonFXConfiguration driveMotorConfig{};
+	ctre::phoenix6::configs::Slot0Configs driveMotorPID{};
 	swerveMotorOutput driveOutput;
-	frc::PIDController m_drivePIDController{
-		Drivetrain::Module::Motor::Drive::PID::Controller::P, 
-		Drivetrain::Module::Motor::Drive::PID::Controller::I,
-		Drivetrain::Module::Motor::Drive::PID::Controller::D
-	};
 
 	ctre::phoenix6::hardware::TalonFX m_angleMotor;
 	ctre::phoenix6::configs::TalonFXConfiguration angleMotorConfig{};
+	ctre::phoenix6::configs::Slot0Configs angleMotorPID{};
 	swerveMotorOutput angleOutput;
-	frc::ProfiledPIDController<units::degrees> m_turningPIDController{
-		Drivetrain::Module::Motor::Angle::PID::Controller::P, 
-		Drivetrain::Module::Motor::Angle::PID::Controller::I,
-		Drivetrain::Module::Motor::Angle::PID::Controller::D,
-		{Drivetrain::Movement::Maximum::Angular::Velocity*10, Drivetrain::Movement::Maximum::Angular::Acceleration*10}
-	};
 
 	ctre::phoenix6::hardware::CANcoder m_angleEncoder;
 	ctre::phoenix6::configs::MagnetSensorConfigs angleEncoderConfig{};

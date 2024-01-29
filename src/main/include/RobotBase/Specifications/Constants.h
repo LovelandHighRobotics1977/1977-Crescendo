@@ -11,11 +11,11 @@
 namespace Drivetrain {
 	namespace Measurements {
 		namespace Frame {
-			static constexpr auto width = 26_in;
-			static constexpr auto length = 26_in;
+			static constexpr auto width = 30_in;
+			static constexpr auto length = 30_in;
 		}
 		namespace Gyroscope {
-			static constexpr auto xPosition = 8_in;
+			static constexpr auto xPosition = 3_in;
 			static constexpr auto yPosition = 0_in;
 		}
 		namespace Wheel {
@@ -24,8 +24,8 @@ namespace Drivetrain {
 			static constexpr auto circumference = (2 * radius) * M_PI;
 		}
 		namespace Circle {
-			static const auto Radius = units::foot_t{std::hypot(((Frame::length/2)-Wheel::offset).value(), ((Frame::length/2)-Wheel::offset).value())};
-			static const auto Circumference = (2 * Radius) * M_PI;
+			static const auto Radius = units::inch_t{std::hypot(((Frame::length/2)-Wheel::offset).value(), ((Frame::length/2)-Wheel::offset).value())};
+			static const auto Circumference = units::foot_t{(2 * Radius) * M_PI};
 		}
 	}
 	namespace Module {
@@ -41,14 +41,9 @@ namespace Drivetrain {
 					static constexpr double S = 0;
 					static constexpr double V = 0;
 					static constexpr double A = 0;
-					static constexpr double P = 1;
+					static constexpr double P = 0.00020019550342130986;		// Definitely need to be retuned
 					static constexpr double I = 0;
-					static constexpr double D = 0.1;
-					namespace Controller {
-						static constexpr double P = 1;
-						static constexpr double I = 0;
-						static constexpr double D = 0;
-					}
+					static constexpr double D = 0.0000010009775171065494;	// Definitely need to be retuned
 				}
 			}
 			namespace Angle {
@@ -62,14 +57,9 @@ namespace Drivetrain {
 					static constexpr double S = 0;
 					static constexpr double V = 0;
 					static constexpr double A = 0;
-					static constexpr double P = 1.7;
-					static constexpr double I = 0.0016;
-					static constexpr double D = 160;
-					namespace Controller {
-						static constexpr double P = 0.005;
-						static constexpr double I = 0.001;
-						static constexpr double D = 0;
-					}
+					static constexpr double P = 1;
+					static constexpr double I = 0;
+					static constexpr double D = 0;
 				}
 			}
 		}
@@ -78,7 +68,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 11;
 				static constexpr int Angle = 12;
 				static constexpr int Encoder = 13;
-				static constexpr double MagnetOffset = 360 - 210.762;
+				static constexpr units::turn_t MagnetOffset = 0.587158_tr;
 				static const frc::Translation2d Location = {
 					( + (((Measurements::Frame::length)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( + (((Measurements::Frame::width)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -88,7 +78,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 2;
 				static constexpr int Angle = 3;
 				static constexpr int Encoder = 4;
-				static constexpr double MagnetOffset = 360 - 112.859;
+				static constexpr units::turn_t MagnetOffset = 0.313447_tr;
 				static const frc::Translation2d Location = {
 					( + (((Measurements::Frame::length)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( - (((Measurements::Frame::width)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -100,7 +90,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 8;
 				static constexpr int Angle = 9;
 				static constexpr int Encoder = 10;
-				static constexpr double MagnetOffset = 360 - 250.609;
+				static constexpr units::turn_t MagnetOffset = 0.696289_tr;
 				static const frc::Translation2d Location = {
 					( - (((Measurements::Frame::length)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( + (((Measurements::Frame::width)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -110,7 +100,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 5;
 				static constexpr int Angle = 6;
 				static constexpr int Encoder = 7;
-				static constexpr double MagnetOffset = 360 - 258.398;
+				static constexpr units::turn_t MagnetOffset = 0.719238_tr;
 				static const frc::Translation2d Location = {
 					( - (((Measurements::Frame::length)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( - (((Measurements::Frame::width)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -127,7 +117,7 @@ namespace Drivetrain {
 			}
 			namespace Angular {
 				// ~ 773 degrees per second
-				static const auto Velocity = units::degrees_per_second_t{( 360 * ( Linear::Velocity / Measurements::Circle::Circumference ) ).value()};
+				static const auto Velocity = units::degrees_per_second_t{( 360 * ( Linear::Velocity.value() / Measurements::Circle::Circumference.value() ) )};
 				static const auto Acceleration = Velocity / 1_s;
 			}
 		}

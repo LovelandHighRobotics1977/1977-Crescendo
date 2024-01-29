@@ -58,7 +58,7 @@ class Driver : public frc2::SubsystemBase {
 				gyro_reset = m_Joystick.GetRawButton(3);
 
 				trigger_one = m_Joystick.GetRawButton(1);
-				trigger_two = m_Joystick.GetRawButton(1);
+				trigger_two = m_Joystick.GetRawButton(15);
 
 				coast_mode_toggle = m_Joystick.GetRawButton(4);
 
@@ -74,7 +74,7 @@ class Driver : public frc2::SubsystemBase {
 			forward = (-m_forwardLimiter.Calculate(frc::ApplyDeadband(forward, forward_deadzone)) * throttle);
 			strafe = (-m_strafeLimiter.Calculate(frc::ApplyDeadband(strafe, strafe_deadzone)) * throttle);
 			
-			if(trigger_one){
+			if(trigger_one && !trigger_two){
 				rotate = 0.75 * (-m_rotateLimiter.Calculate(frc::ApplyDeadband(rotate, rotate_deadzone)) * sqrt(throttle));
 			}else if(trigger_one && trigger_two){
 				rotate = (-m_rotateLimiter.Calculate(frc::ApplyDeadband(rotate, rotate_deadzone)) * sqrt(throttle));
