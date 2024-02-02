@@ -14,7 +14,7 @@ namespace Drivetrain {
 			static constexpr auto length = 30_in;
 		}
 		namespace Gyroscope {
-			static constexpr auto xPosition = 3_in;
+			static constexpr auto xPosition = 12_in;
 			static constexpr auto yPosition = 0_in;
 		}
 		namespace Wheel {
@@ -33,7 +33,7 @@ namespace Drivetrain {
 				static constexpr double max_rpm = 6000;
 				static constexpr double gear_ratio = 6.75;
 				static constexpr double encoder_cpr = 2048;
-				static constexpr double output_rps = ( ( max_rpm / 60 ) / gear_ratio);
+				static constexpr double output_rps = ( ( max_rpm / 60 ) / gear_ratio );
 				static const auto distance_per_pulse = ((Measurements::Wheel::circumference) / (gear_ratio * encoder_cpr));
 				static const auto distance_per_rotation = units::meter_t{distance_per_pulse * encoder_cpr};
 				namespace PID {
@@ -67,7 +67,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 11;
 				static constexpr int Angle = 12;
 				static constexpr int Encoder = 13;
-				static constexpr units::turn_t MagnetOffset = 0.587158_tr;
+				static constexpr units::turn_t MagnetOffset = 0.764404_tr;
 				static const frc::Translation2d Location = {
 					( + (((Measurements::Frame::length)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( + (((Measurements::Frame::width)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -77,7 +77,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 2;
 				static constexpr int Angle = 3;
 				static constexpr int Encoder = 4;
-				static constexpr units::turn_t MagnetOffset = 0.313447_tr;
+				static constexpr units::turn_t MagnetOffset = 0.674072_tr;
 				static const frc::Translation2d Location = {
 					( + (((Measurements::Frame::length)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( - (((Measurements::Frame::width)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -89,7 +89,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 8;
 				static constexpr int Angle = 9;
 				static constexpr int Encoder = 10;
-				static constexpr units::turn_t MagnetOffset = 0.696289_tr;
+				static constexpr units::turn_t MagnetOffset = 0.310303_tr;
 				static const frc::Translation2d Location = {
 					( - (((Measurements::Frame::length)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( + (((Measurements::Frame::width)/2) - Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -99,7 +99,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 5;
 				static constexpr int Angle = 6;
 				static constexpr int Encoder = 7;
-				static constexpr units::turn_t MagnetOffset = 0.719238_tr;
+				static constexpr units::turn_t MagnetOffset = 0.218750_tr;
 				static const frc::Translation2d Location = {
 					( - (((Measurements::Frame::length)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( - (((Measurements::Frame::width)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition
@@ -110,22 +110,20 @@ namespace Drivetrain {
 	namespace Movement {
 		namespace Maximum {
 			namespace Linear {
-				// ~ 16 feet per second
 				static const auto Velocity = ( units::foot_t{ Measurements::Wheel::circumference } * Module::Motor::Drive::output_rps ) / 1_s;
 				static const auto Acceleration = Velocity / 1_s;
 			}
 			namespace Angular {
-				// ~ 773 degrees per second
 				static const auto Velocity = units::degrees_per_second_t{( 360 * ( Linear::Velocity.value() / Measurements::Circle::Circumference.value() ) )};
 				static const auto Acceleration = Velocity / 1_s;
 			}
 		}
 		namespace Rotate {
 			namespace Preset {
-				static const units::degrees_per_second_t None = 0_deg_per_s;  						//  0 degrees per second
-				static const units::degrees_per_second_t Slow =  Maximum::Angular::Velocity / 3;	//  260 degrees per second
-				static const units::degrees_per_second_t Medium = Maximum::Angular::Velocity / 2;	//  370 degrees per second
-				static const units::degrees_per_second_t Fast = Maximum::Angular::Velocity;  		//  770 degrees per second
+				static const units::degrees_per_second_t None = 0_deg_per_s;
+				static const units::degrees_per_second_t Slow =  Maximum::Angular::Velocity / 3;
+				static const units::degrees_per_second_t Medium = Maximum::Angular::Velocity / 2;
+				static const units::degrees_per_second_t Fast = Maximum::Angular::Velocity;
 			}
 			namespace Around {
 				static constexpr frc::Translation2d Center = { - Measurements::Gyroscope::xPosition , - Measurements::Gyroscope::yPosition };   						//  position of the center of the robot
