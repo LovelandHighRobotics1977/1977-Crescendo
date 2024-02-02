@@ -5,6 +5,8 @@
  \ \_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\  \/\_____\  \ \_____\ 
   \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/   \/_____/   \/_____/ 
                                                                           
+                               License                                             
+
 Copyright (c) FIRST and other WPILib contributors. 
 Open Source Software; you can modify and/or share it under the terms of 
 the WPILib BSD license file in the root directory of this project.
@@ -45,6 +47,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-  \ \_\    \ \_\  \/\_____\ 
   \/_____/   \/_/ /_/   \/_____/   \/____/   \/_/     \/_/   \/_____/ 
                                                                       
+                                Credits
+
 Lead Programmer: 
     - Salem Lessem
       https://github.com/ThatAlo
@@ -65,5 +69,67 @@ Team mentors:
 FRC teams:
     - 1977: The PowerSquids
     - 1822: Electric Calamari
+
+ ______     ______   ______     __  __     ______     ______   __  __     ______     ______    
+/\  ___\   /\__  _\ /\  == \   /\ \/\ \   /\  ___\   /\__  _\ /\ \/\ \   /\  == \   /\  ___\   
+\ \___  \  \/_/\ \/ \ \  __<   \ \ \_\ \  \ \ \____  \/_/\ \/ \ \ \_\ \  \ \  __<   \ \  __\   
+ \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\    \ \_\  \ \_____\  \ \_\ \_\  \ \_____\ 
+  \/_____/     \/_/   \/_/ /_/   \/_____/   \/_____/     \/_/   \/_____/   \/_/ /_/   \/_____/ 
+                                                                                               
+
+                                            Structure
+
+.
+└── Main/
+    ├── cpp/
+    │   ├── Control/
+    │   │   └── Autonomous.cpp
+    │   ├── RobotBase/
+    │   │   ├── Robot.cpp
+    │   │   └── RobotContainer.cpp
+    │   └── Subsystems/
+    │       ├── Drivetrain/
+    │       │   ├── Commands.cpp
+    │       │   ├── DriveSubsystem.cpp
+    │       │   └── SwerveModule.cpp
+    │       └── Mechanism/
+    │           ├── Intake.cpp
+    │           ├── NoteMechanism.cpp
+    │           └── Shooter.cpp
+    └── include/
+        ├── Control/
+        │   ├── Autonomous.h
+        │   └── Controllers.h
+        ├── Headers/
+        │   ├── Headers.h
+        │   ├── Libraries.h
+        │   ├── ProjectInfo.h
+        │   └── Util.h
+        ├── RobotBase/
+        │   ├── Parameters/
+        │   │   ├── AutoParameters.h
+        │   │   ├── MechParameters.h
+        │   │   ├── RobotParameters.h        { Include this file to include all parameters }
+        │   │   └── TeleopParameters.h
+        │   ├── Specifications/
+        │   │   ├── FullBotKrakens.h
+        │   │   ├── GenericFalcons.h
+        │   │   └── RobotSpecifications.h    { Include this file to include correct specifications }
+        │   ├── Robot.h
+        │   └── RobotContainer.h
+        └── Subsystems/
+            ├── Devices/
+            │   ├── Devices.h
+            │   ├── Field.h
+            │   ├── Gyro.h
+            │   └── PDH.h
+            ├── Drivetrain/
+            │   ├── Commands.h
+            │   ├── DriveSubsystem.h
+            │   └── SwerveModule.h
+            └── Mechanism/
+                ├── Intake.h
+                ├── NoteMechanism.h
+                └── Shooter.h
 
 */
