@@ -70,6 +70,10 @@ FRC teams:
     - 1977: The PowerSquids
     - 1822: Electric Calamari
 
+Sites I used for this file to make it look *fancy*:
+    - https://tree.nathanfriend.io/
+    - https://patorjk.com/software/taag/
+
  ______     ______   ______     __  __     ______     ______   __  __     ______     ______    
 /\  ___\   /\__  _\ /\  == \   /\ \/\ \   /\  ___\   /\__  _\ /\ \/\ \   /\  == \   /\  ___\   
 \ \___  \  \/_/\ \/ \ \  __<   \ \ \_\ \  \ \ \____  \/_/\ \/ \ \ \_\ \  \ \  __<   \ \  __\   
