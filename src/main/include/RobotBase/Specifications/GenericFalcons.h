@@ -99,7 +99,7 @@ namespace Drivetrain {
 				static constexpr int Drive = 5;
 				static constexpr int Angle = 6;
 				static constexpr int Encoder = 7;
-				static constexpr units::turn_t MagnetOffset = 0.229004_tr;
+				static constexpr units::turn_t MagnetOffset = 0.726807_tr;
 				static const frc::Translation2d Location = {
 					( - (((Measurements::Frame::length)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::xPosition,
 					( - (((Measurements::Frame::width)/2) + Measurements::Wheel::offset)) - Measurements::Gyroscope::yPosition

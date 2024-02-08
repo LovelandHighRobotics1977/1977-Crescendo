@@ -32,11 +32,20 @@ void RobotContainer::ConfigureButtonBindings() {
 	frc2::Trigger resetGyro([this] { return m_driver.gyro_reset; });
 	resetGyro.OnTrue(frc2::InstantCommand( [] {Gyro::GetInstance()->ahrs.Reset();} ).ToPtr());
 
-	frc2::Trigger pickupNote([this] { return ((m_operator.pickupNote) || (m_driver.coast_mode_toggle)); });
+	frc2::Trigger pickupNote([this] { return m_operator.pickupNote; });
 	pickupNote.WhileTrue(m_noteMechanism.PickupNote().ToPtr());
+
+	frc2::Trigger reverseNote([this] { return m_operator.reverseNote; });
+	reverseNote.WhileTrue(m_noteMechanism.ReverseNote().ToPtr());
 
 	frc2::Trigger shootNote([this] { return m_operator.shootNote; });
 	shootNote.WhileTrue(m_noteMechanism.ShootNote().ToPtr());
+
+	frc2::Trigger openClimber([this] { return m_operator.openClimber; });
+	openClimber.WhileTrue(m_climber.OpenClimber().ToPtr());
+
+	frc2::Trigger closeClimber([this] { return m_operator.closeClimber; });
+	closeClimber.WhileTrue(m_climber.CloseClimber().ToPtr());
 }
 
 void RobotContainer::ConfigureAutonomousChooser() {
@@ -51,7 +60,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 void RobotContainer::ConfigureDashboard() {
 
 	cs::UsbCamera DriveCamera = frc::CameraServer::StartAutomaticCapture(0);
-	DriveCamera.SetVideoMode(cs::VideoMode(cs::VideoMode::PixelFormat::kYUYV, 1280, 720, 15));
 
 	frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser);
 	

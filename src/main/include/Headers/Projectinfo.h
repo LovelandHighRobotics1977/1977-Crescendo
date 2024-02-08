@@ -95,10 +95,13 @@ Sites I used for this file to make it look *fancy*:
     │       │   ├── Commands.cpp
     │       │   ├── DriveSubsystem.cpp
     │       │   └── SwerveModule.cpp
-    │       └── Mechanism/
-    │           ├── Intake.cpp
-    │           ├── NoteMechanism.cpp
-    │           └── Shooter.cpp
+    │       ├── NoteMechanism/
+    │       │   ├── Intake.cpp
+    │       │   ├── NoteMechanism.cpp
+    │       │   └── Shooter.cpp
+    │       └── Climber/
+    │           ├── Climber.cpp
+    │           └── Actuator.cpp
     └── include/
         ├── Control/
         │   ├── Autonomous.h
@@ -130,9 +133,23 @@ Sites I used for this file to make it look *fancy*:
             │   ├── Commands.h
             │   ├── DriveSubsystem.h
             │   └── SwerveModule.h
-            └── Mechanism/
-                ├── Intake.h
-                ├── NoteMechanism.h
-                └── Shooter.h
+            ├── NoteMechanism/
+            │   ├── Intake.h
+            │   ├── NoteMechanism.h
+            │   └── Shooter.h
+            └── Climber/
+                ├── Climber.h
+                └── Actuator.h
+
+
+ ______     ______     ______     ______     ______  
+╱╲  == ╲   ╱╲  __ ╲   ╱╲  == ╲   ╱╲  __ ╲   ╱╲__  _╲ 
+╲ ╲  __<   ╲ ╲ ╲╱╲ ╲  ╲ ╲  __<   ╲ ╲ ╲╱╲ ╲  ╲╱_╱╲ ╲╱ 
+ ╲ ╲_╲ ╲_╲  ╲ ╲_____╲  ╲ ╲_____╲  ╲ ╲_____╲    ╲ ╲_╲ 
+  ╲╱_╱ ╱_╱   ╲╱_____╱   ╲╱_____╱   ╲╱_____╱     ╲╱_╱ 
+                                                     
+                      Robot Info
+
+                        
 
 */

@@ -103,11 +103,20 @@ class Operator : public frc2::SubsystemBase {
 		Operator(const int port):m_XboxController{port}{};
 
 		bool pickupNote;
+		bool reverseNote;
 		bool shootNote;
+
+		bool openClimber;
+		bool closeClimber;
 
 		void update(){
 			pickupNote = m_XboxController.GetAButton();
-			shootNote = m_XboxController.GetBButton();
+			reverseNote = m_XboxController.GetBButton();
+
+			shootNote = m_XboxController.GetRightTriggerAxis() > 0.1;
+
+			openClimber = m_XboxController.GetLeftBumper();
+			closeClimber = m_XboxController.GetRightBumper();
 		}
 		
 	private:

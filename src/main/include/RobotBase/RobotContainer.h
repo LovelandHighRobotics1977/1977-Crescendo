@@ -3,7 +3,8 @@
 
 #include "Headers/Headers.h"
 #include "Subsystems/Drivetrain/DriveSubsystem.h"
-#include "Subsystems/Mechanism/NoteMechanism.h"
+#include "Subsystems/NoteMechanism/NoteMechanism.h"
+#include "Subsystems/Climber/Climber.h"
 #include "Control/Autonomous.h"
 
 class RobotContainer {
@@ -27,10 +28,12 @@ class RobotContainer {
 	// Subsystems
 		DriveSubsystem m_drive;
 		NoteMechanism m_noteMechanism;
+		Climber m_climber;
 
 	// Network Tables
 
 	// Cameras
+		
 
 	// Autonomous
 		frc::SendableChooser<frc2::Command*> m_chooser;
