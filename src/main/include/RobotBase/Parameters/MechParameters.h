@@ -10,7 +10,10 @@ namespace Mechanism {
 		static constexpr int Left = 16;
 		static constexpr int Angle = 17;
 	}
-	static constexpr int Climber = 18;
+	namespace Climber {
+		static constexpr int Limit = 0;
+		static constexpr int Winch = 18;
+	}	
 }
 
 #endif

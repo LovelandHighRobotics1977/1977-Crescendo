@@ -68,8 +68,7 @@ frc2::CommandPtr AutoRoutine::square(DriveSubsystem *drive) {
 				frc2::ParallelRaceGroup(
 					frc2::RunCommand([drive] { drive->Drive({0_fps, 6_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
-				),
-				frc2::WaitCommand(1_s)
+				)
 			)
 		)
 	).ToPtr();

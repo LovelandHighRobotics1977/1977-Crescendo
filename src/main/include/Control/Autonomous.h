@@ -4,6 +4,8 @@
 #include "headers/Headers.h"
 
 #include "subsystems/Drivetrain/DriveSubsystem.h"
+#include "Subsystems/NoteMechanism/NoteMechanism.h"
+#include "Subsystems/Climber/Climber.h"
 
 #include "subsystems/Drivetrain/Commands.h"
 

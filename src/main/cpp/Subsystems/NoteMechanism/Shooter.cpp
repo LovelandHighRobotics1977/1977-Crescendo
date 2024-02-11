@@ -2,6 +2,7 @@
 
 Shooter::Shooter(){
 	shooterMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Coast);
+    shooterMotorConfig.CurrentLimits.WithSupplyCurrentLimit(20);
     m_leftShooter.GetConfigurator().Apply(shooterMotorConfig);
     m_rightShooter.GetConfigurator().Apply(shooterMotorConfig);
 }

@@ -9,11 +9,13 @@ class Climber : public frc2::SubsystemBase {
 		Climber();
 
 		frc2::StartEndCommand OpenClimber();
-		frc2::StartEndCommand CloseClimber();
+		frc2::FunctionalCommand CloseClimber();
 
 	private:
 
         Actuator m_actuator;
+
+		frc::DigitalInput m_angleLimitSwitch{Mechanism::Climber::Limit};
 
 };
 
