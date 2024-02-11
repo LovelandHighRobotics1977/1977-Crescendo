@@ -1,3 +1,5 @@
 Robot code for the 2024 FRC game Crecendo
 
-THIS IS A DEV BRANCH DO NOT USE FOR COMPETITION
+This is the known working code, should be used as a base.
+
+https://www.desmos.com/calculator/myakquqqoo
