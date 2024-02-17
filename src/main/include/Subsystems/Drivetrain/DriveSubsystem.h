@@ -21,6 +21,7 @@ public:
 	 * @param fieldRelative Whether the provided x and y speeds are relative to
 	 *                      the field.
 	 * @param centerOfRotation Center of the robot's rotation ( translation 2d )
+	 * @param targetAprilTag Rotate towards the nearest april tag
 	 */
 	void Drive(DriveData data);
 	void SetModuleStates(wpi::array<frc::SwerveModuleState, 4> desiredStates);

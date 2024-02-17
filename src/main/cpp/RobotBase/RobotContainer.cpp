@@ -23,7 +23,8 @@ void RobotContainer::ConfigureDefaultCommands() {
 			m_driver.strafe * Drivetrain::Movement::Maximum::Linear::Velocity, 
 			m_driver.rotate * Drivetrain::Movement::Maximum::Angular::Velocity, 
 			m_driver.field_relative,
-			Drivetrain::Movement::Rotate::Around::Center });}, 
+			Drivetrain::Movement::Rotate::Around::Center,
+			m_driver.coast_mode_toggle });}, 
 		{&m_drive}
 	));
 }

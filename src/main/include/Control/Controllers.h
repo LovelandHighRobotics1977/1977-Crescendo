@@ -19,6 +19,8 @@ class Driver : public frc2::SubsystemBase {
 
 		bool coast_mode_toggle;
 
+		bool targetNearestAprilTag;
+
 		double throttle;
 
 		double forward;
@@ -52,6 +54,8 @@ class Driver : public frc2::SubsystemBase {
 				rotate = m_Joystick.GetRawAxis(5);
 
 				mechanism = m_Joystick.GetRawButton(3);
+
+				targetNearestAprilTag = m_Joystick.GetRawButton(4);
 			}
 
 			if(m_Joystick.GetName() == std::string{"Extreme 3D pro"}){
@@ -60,7 +64,6 @@ class Driver : public frc2::SubsystemBase {
 				gyro_reset = m_Joystick.GetRawButton(3);
 
 				trigger_one = m_Joystick.GetRawButton(1);
-				trigger_two = m_Joystick.GetRawButton(15);
 
 				coast_mode_toggle = m_Joystick.GetRawButton(4);
 
@@ -92,8 +95,8 @@ class Driver : public frc2::SubsystemBase {
 			frc::SlewRateLimiter<units::dimensionless::scalar> m_strafeLimiter{3 / 1_ms};
 			frc::SlewRateLimiter<units::dimensionless::scalar> m_rotateLimiter{3 / 1_ms};
 
-			double forward_deadzone = 0.05;
-			double strafe_deadzone = 0.05;
+			double forward_deadzone = 0.1;
+			double strafe_deadzone = 0.1;
 			double rotate_deadzone = 0.1;
 	};
 

@@ -4,7 +4,7 @@ NoteMechanism::NoteMechanism(){}
 
 frc2::StartEndCommand NoteMechanism::PickupNote(){
 	return frc2::StartEndCommand(
-		[this] { m_intake.setIntake(-0.75); } , 
+		[this] { m_intake.setIntake(-0.5); } , 
 		[this] { m_intake.setIntake(0); } , 
 		{&m_intake}
 	);

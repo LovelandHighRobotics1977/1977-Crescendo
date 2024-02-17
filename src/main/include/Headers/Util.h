@@ -10,6 +10,7 @@
  * @param rotate Rotational movement of the robot in degrees/sec
  * @param fieldRelative Is the robot being driven field oriented?
  * @param centerOfRotation Robot center of rotation.
+ * @param targetAprilTag Rotate towards the nearest april tag
 */
 struct DriveData{
 	units::meters_per_second_t forward = 0_mps;
@@ -17,6 +18,7 @@ struct DriveData{
 	units::angular_velocity::degrees_per_second_t rotate = 0_deg_per_s;
 	bool fieldRelative = true;
 	frc::Translation2d centerOfRotation = frc::Translation2d{0_in,0_in};
+	bool targetAprilTag = false;
 };
 
 /**
