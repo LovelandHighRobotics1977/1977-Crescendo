@@ -2,9 +2,7 @@
 #define _ROBOT_CONTAINER_H
 
 #include "Headers/Headers.h"
-#include "Subsystems/Drivetrain/DriveSubsystem.h"
-#include "Subsystems/NoteMechanism/NoteMechanism.h"
-#include "Subsystems/Climber/Climber.h"
+
 #include "Control/Autonomous.h"
 
 class RobotContainer {

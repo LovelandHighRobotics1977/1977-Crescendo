@@ -9,20 +9,22 @@
  * Current Robots:
  * - _FullBotKrakens
  * - _GenericFalconsBot
+ * - _1822bot
  * 
  * Robots salem wants:
  * - _KrakenOne                     (kraken x60s)
  * - _KrakenTwo                     (kraken x60s)
+ * 
  * - _Programming (Salem's swerve)  (kraken x60s drive, falcons angle)
  */ 
-#define _FullBotKrakens
+#define _1822bot
 
 #if defined(_GenericFalconsBot)
 #include "RobotBase/Specifications/GenericFalcons.h"
 #elif defined(_FullBotKrakens)
 #include "RobotBase/Specifications/FullBotKrakens.h"
-#elif defined(_KrakenOne)
-#include "RobotBase/Specifications/KrakenOne.h"
+#elif defined(_1822bot)
+#include "RobotBase/Specifications/1822bot.h"
 #elif defined(_KrakenTwo)
 #include "RobotBase/Specifications/KrakenTwo.h"
 #elif defined(_Programming)
