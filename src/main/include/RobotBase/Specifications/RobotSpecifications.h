@@ -17,7 +17,7 @@
  * 
  * - _Programming (Salem's swerve)  (kraken x60s drive, falcons angle)
  */ 
-#define _1822bot
+#define _SalemsBot
 
 #if defined(_GenericFalconsBot)
 #include "RobotBase/Specifications/GenericFalcons.h"
@@ -25,8 +25,8 @@
 #include "RobotBase/Specifications/FullBotKrakens.h"
 #elif defined(_1822bot)
 #include "RobotBase/Specifications/1822bot.h"
-#elif defined(_KrakenTwo)
-#include "RobotBase/Specifications/KrakenTwo.h"
+#elif defined(_SalemsBot)
+#include "RobotBase/Specifications/SalemsBot.h"
 #elif defined(_Programming)
 #include "RobotBase/Specifications/Programming.h"
 #else
