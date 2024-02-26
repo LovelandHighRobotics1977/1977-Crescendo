@@ -2,8 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "RobotBase/RobotContainer.h"
-#include "headers/Headers.h"
+#include "RobotBase/RobotContainer.hpp"
+#include "headers/Headers.hpp"
 
 RobotContainer::RobotContainer() {
 	ConfigureAutonomousChooser();
@@ -23,7 +23,8 @@ void RobotContainer::ConfigureDefaultCommands() {
 			m_driver.strafe * Drivetrain::Movement::Maximum::Linear::Velocity, 
 			m_driver.rotate * Drivetrain::Movement::Maximum::Angular::Velocity, 
 			m_driver.field_relative,
-			Drivetrain::Movement::Rotate::Around::Center });}, 
+			Drivetrain::Movement::Rotate::Around::Center,
+			m_driver.coast_mode_toggle });}, 
 		{&m_drive}
 	));
 }
@@ -41,6 +42,12 @@ void RobotContainer::ConfigureButtonBindings() {
 	frc2::Trigger shootNote([this] { return m_operator.shootNote; });
 	shootNote.WhileTrue(m_noteMechanism.ShootNote().ToPtr());
 
+	frc2::Trigger lowerShooter([this] { return m_operator.lowerShooter; });
+	lowerShooter.WhileTrue(m_noteMechanism.LowerShooter().ToPtr());
+
+	frc2::Trigger raiseShooter([this] { return m_operator.raiseShooter; });
+	raiseShooter.WhileTrue(m_noteMechanism.RaiseShooter().ToPtr());
+
 	frc2::Trigger openClimber([this] { return m_operator.openClimber; });
 	openClimber.WhileTrue(m_climber.OpenClimber().ToPtr());
 
@@ -49,8 +56,9 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 void RobotContainer::ConfigureAutonomousChooser() {
-	m_chooser.SetDefaultOption("spin", a_test.get());
+	m_chooser.AddOption("spin", a_test.get());
 	m_chooser.AddOption("square", a_square.get());
+	m_chooser.SetDefaultOption("zone1", a_zone1.get());
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() { 

@@ -1,4 +1,4 @@
-#include "subsystems/Climber/Actuator.h"
+#include "subsystems/Climber/Actuator.hpp"
 
 Actuator::Actuator() : m_actuatorMotor{Mechanism::Climber::Winch}{
     actuatorMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Brake);

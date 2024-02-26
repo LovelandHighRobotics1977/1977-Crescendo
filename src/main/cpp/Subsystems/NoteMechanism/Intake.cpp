@@ -1,4 +1,4 @@
-#include "subsystems/NoteMechanism/Intake.h"
+#include "subsystems/NoteMechanism/Intake.hpp"
 
 Intake::Intake() : m_intakeMotor{Mechanism::Intake}{
     intakeMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Coast);

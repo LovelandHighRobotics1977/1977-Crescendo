@@ -1,4 +1,4 @@
-#include "subsystems/Drivetrain/Commands.h"
+#include "subsystems/Drivetrain/Commands.hpp"
 
 frc2::SequentialCommandGroup SwerveCommand::FollowPath(DriveSubsystem *drive, frc::Pose2d startPose, std::vector<frc::Translation2d> waypoints, frc::Pose2d endPose) {
 	

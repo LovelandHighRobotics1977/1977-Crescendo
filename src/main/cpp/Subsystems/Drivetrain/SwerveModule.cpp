@@ -2,8 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/Drivetrain/SwerveModule.h"
-#include "headers/Headers.h"
+#include "subsystems/Drivetrain/SwerveModule.hpp"
+#include "headers/Headers.hpp"
 
 SwerveModule::SwerveModule(const int driveMotorID,     const int angleMotorID,       const int angleEncoderID, units::turn_t magnetOffset)
 					  : m_driveMotor{driveMotorID}, m_angleMotor{angleMotorID}, m_angleEncoder{angleEncoderID} {

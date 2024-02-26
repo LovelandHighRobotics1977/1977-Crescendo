@@ -2,8 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "Subsystems/Drivetrain/DriveSubsystem.h"
-#include "Headers/Headers.h"
+#include "Subsystems/Drivetrain/DriveSubsystem.hpp"
+#include "Headers/Headers.hpp"
 
 DriveSubsystem::DriveSubsystem()
    :m_frontLeft{Drivetrain::Module::Front::Left::Drive,
@@ -48,11 +48,16 @@ void DriveSubsystem::Periodic() {
 }
 
 void DriveSubsystem::Drive(DriveData data) {
+	if(data.targetAprilTag){
+		fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, -5_deg_per_s * nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)}, DriveSubsystem::GetHeading());
+	}else{
+		fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate}, DriveSubsystem::GetHeading());
+		robotRelativeSpeeds = frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate};
+	}
 
-	fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate}, DriveSubsystem::GetHeading());
-	robotRelativeSpeeds = frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate};
+	auto chosenSpeeds = data.fieldRelative ? fieldRelativeSpeeds : robotRelativeSpeeds;
 
-	auto states = DriveKinematics.ToSwerveModuleStates(data.fieldRelative ? fieldRelativeSpeeds : robotRelativeSpeeds, data.centerOfRotation);
+	auto states = DriveKinematics.ToSwerveModuleStates(chosenSpeeds, data.centerOfRotation);
 
 	DriveKinematics.DesaturateWheelSpeeds(&states, TeleoperatedMode::Parameter::Linear::Velocity);
 

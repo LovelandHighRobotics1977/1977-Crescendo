@@ -1,4 +1,4 @@
-#include "subsystems/Climber/Climber.h"
+#include "subsystems/Climber/Climber.hpp"
 
 Climber::Climber() {}
 
