@@ -17,11 +17,13 @@ Shooter::Shooter(){
     m_shooterAngle.GetConfigurator().Apply(angleMotorConfig);
 }
 
-void Shooter::setShooter(double speed, double spin){
-	m_leftShooter.Set(speed * spin);
-    m_rightShooter.Set(-speed);
+void Shooter::setShooter(double speed){
+	m_leftShooter.Set(speed);
+    m_rightShooter.Set(-speed * 0.95);
 }
 
 void Shooter::setShooterAngle(units::turn_t angle){
-    m_shooterAngle.SetControl(ctre::phoenix6::controls::PositionDutyCycle{angle});
+    m_shooterAngle.SetControl(ctre::phoenix6::controls::PositionDutyCycle{
+        max(Mechanism::Shooter::Angle::Preset::MIN, min(angle, Mechanism::Shooter::Angle::Preset::MAX))
+    });
 }

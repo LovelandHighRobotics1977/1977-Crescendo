@@ -29,6 +29,8 @@ class RobotContainer {
 
 	// Network Tables
 
+		nt::NetworkTableInstance m_networkTable = nt::NetworkTableInstance::GetDefault();
+
 	// Cameras
 		
 

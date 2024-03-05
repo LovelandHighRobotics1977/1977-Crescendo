@@ -27,7 +27,10 @@ void RobotContainer::ConfigureDefaultCommands() {
 			m_driver.coast_mode_toggle });}, 
 		{&m_drive}
 	));
-	m_noteMechanism.SetDefaultCommand(frc2::RunCommand( [this] { m_noteMechanism.AngleShooter(); } ));
+	m_noteMechanism.SetDefaultCommand(frc2::RunCommand( 
+		[this] { m_noteMechanism.AngleShooter(); },
+		{&m_noteMechanism}
+	));
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -41,7 +44,7 @@ void RobotContainer::ConfigureButtonBindings() {
 	reverseNote.WhileTrue(m_noteMechanism.ReverseNote().ToPtr());
 
 	frc2::Trigger shootNote([this] { return m_operator.shootNote; });
-	shootNote.WhileTrue(m_noteMechanism.ShootNote().ToPtr());
+	shootNote.OnTrue(m_noteMechanism.ShootNote().ToPtr());
 
 	frc2::Trigger openClimber([this] { return m_operator.openClimber; });
 	openClimber.WhileTrue(m_climber.OpenClimber().ToPtr());
@@ -65,5 +68,8 @@ void RobotContainer::ConfigureDashboard() {
 	cs::UsbCamera DriveCamera = frc::CameraServer::StartAutomaticCapture(0);
 
 	frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser);
+
+
+
 	
 }

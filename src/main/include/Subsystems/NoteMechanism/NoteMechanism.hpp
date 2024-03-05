@@ -11,9 +11,9 @@ class NoteMechanism : public frc2::SubsystemBase {
 
 		frc2::StartEndCommand PickupNote();
 		frc2::StartEndCommand ReverseNote();
-		frc2::StartEndCommand ShootNote();
+		frc2::SequentialCommandGroup ShootNote();
 
-		frc2::RunCommand AngleShooter(); // Should be run as a default command.  The driver will not have to adjust shooter angle.  
+		void AngleShooter(); // Should be run as a default command.  The driver will not have to adjust shooter angle.  
 
 	private:
 

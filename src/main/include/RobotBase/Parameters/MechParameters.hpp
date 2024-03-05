@@ -12,13 +12,16 @@ namespace Mechanism {
 			static constexpr int Winch = 17;
 			static constexpr int Encoder = 19;
 			static constexpr auto MagnetOffset = 0.243896_tr;
-			static constexpr double MagicNumber = 0;	// Multiplied by the total width of the april tags to return the angle reqired to score
-														// Needs to be calculated, TODO
 			namespace Preset {
 				static constexpr auto MIN = 0.001_tr;
 				static constexpr auto SpeakerClose = 0.03_tr;
 				static constexpr auto SpeakerFar = 0.0175_tr;
 				static constexpr auto MAX = 0.101319_tr;
+			}
+			namespace AutoAim {
+				static constexpr double Exponent = 2.15;
+				static constexpr double ScalingFactor = 1000000;
+				static constexpr double Offset = 0.1;
 			}
 		}
 	}

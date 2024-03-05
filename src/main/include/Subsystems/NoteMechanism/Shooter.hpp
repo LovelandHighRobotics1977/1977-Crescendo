@@ -12,14 +12,14 @@ class Shooter : public frc2::SubsystemBase {
 		 * @param speed The speed of the shooter [ -1 -> 1 ] with -1 being full reverse and 1 being full forward
 		 * @param spin The spin of the shooter [ 0 -> 1 ] with 0 being full widdershins and 1 being no spin.  Defaults to 1
 		*/
-		void setShooter(double speed, double spin = 1);
+		void setShooter(double speed);
 
 		void setShooterAngle(units::turn_t angle);
 
 	private:
 
-		ctre::phoenix6::hardware::TalonFX m_leftShooter{Mechanism::Shooter::Top};
-		ctre::phoenix6::hardware::TalonFX m_rightShooter{Mechanism::Shooter::Bottom};
+		ctre::phoenix6::hardware::TalonFX m_leftShooter{Mechanism::Shooter::Bottom};
+		ctre::phoenix6::hardware::TalonFX m_rightShooter{Mechanism::Shooter::Top};
 
 		ctre::phoenix6::hardware::TalonFX m_shooterAngle{Mechanism::Shooter::Angle::Winch};
 		ctre::phoenix6::hardware::CANcoder m_shooterAngleEncoder{Mechanism::Shooter::Angle::Encoder};
