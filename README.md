@@ -183,16 +183,16 @@ Sites I used for this file to make it look *fancy*:
 | file name | what it does |
 |:---------:|:------------:|
 |Main/cpp/Controll/Autonomous.cpp| Sends the commands for the autonomus routine |
-|Main/cpp/RobotBase/Robot.cpp| use |
-|Main/cpp/RobotBase/RobotContainer.cpp| use |
-|Main/cpp/Subsystems/Drivetrain/Commands.cpp| use|
-|Main/cpp/Subsystems/Drivetrain/DriveSubsystem.cpp| use |
+|Main/cpp/RobotBase/Robot.cpp| Calls the command based skeleton. Basically boilerplate |
+|Main/cpp/RobotBase/RobotContainer.cpp| The heart of the program. This calls the default triggers, as well as cofigures the button bindings |
+|Main/cpp/Subsystems/Drivetrain/Commands.cpp| sets the commands for the drivetrain. this includes the commands to set the trajectory and the pid tuners |
+|Main/cpp/Subsystems/Drivetrain/DriveSubsystem.cpp| sets up each swerve module and the kinimatics for the swerve modules |
 |Main/cpp/Subsystems/Drivetrain/SwerveModule.cpp| use |
 |Main/cpp/Subsystems/NoteMechanism/Intake.cpp| use |
 |Main/cpp/Subsystems/NoteMechanism/NoteMechanism.cpp| use |
 |Main/cpp/Subsystems/NoteMechanism/Shooter.cpp| use |
-|Main/cpp/Subsystems/Climber/Climber.cpp| use |
-|Main/cpp/Subsystems/Climber/Actuator.cpp| use |
+|Main/cpp/Subsystems/Climber/Climber.cpp| Uses Actuator.cpp to controll the opening and closing of the pull up mech |
+|Main/cpp/Subsystems/Climber/Actuator.cpp| Declares the defaults for the climber motor as well as setting speed and direction of said motor |
 |Main/include/Control/Autonomous.h| use |
 |Main/include/Control/Controllers.h| use |
 |Main/include/Headers/Headers.h| use |
