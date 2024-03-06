@@ -49,8 +49,13 @@ CAN Device ID and naming scheme ( 2024 ):
 | 19 | Shooter Angle Encoder | **---- Unassigned ----** | **---- Unassigned ----** |
 | 20 | **---- Unassigned ----** | **---- Unassigned ----** | **---- Unassigned ----** |
 
-
-                               License                                             
+```
+ __         __     ______     ______     __   __     ______     ______    
+╱╲ ╲       ╱╲ ╲   ╱╲  ___╲   ╱╲  ___╲   ╱╲ "-.╲ ╲   ╱╲  ___╲   ╱╲  ___╲   
+╲ ╲ ╲____  ╲ ╲ ╲  ╲ ╲ ╲____  ╲ ╲  __╲   ╲ ╲ ╲-.  ╲  ╲ ╲___  ╲  ╲ ╲  __╲   
+ ╲ ╲_____╲  ╲ ╲_╲  ╲ ╲_____╲  ╲ ╲_____╲  ╲ ╲_╲╲"╲_╲  ╲╱╲_____╲  ╲ ╲_____╲ 
+  ╲╱_____╱   ╲╱_╱   ╲╱_____╱   ╲╱_____╱   ╲╱_╱ ╲╱_╱   ╲╱_____╱   ╲╱_____╱ 
+```                                   
 
 Copyright (c) FIRST and other WPILib contributors. 
 Open Source Software; you can modify and╱or share it under the terms of 
@@ -87,9 +92,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ================
 
- 
-                                                                      
-                                Credits
+```
+ ______     ______     ______     _____     __     ______   ______    
+╱╲  ___╲   ╱╲  == ╲   ╱╲  ___╲   ╱╲  __-.  ╱╲ ╲   ╱╲__  _╲ ╱╲  ___╲   
+╲ ╲ ╲____  ╲ ╲  __<   ╲ ╲  __╲   ╲ ╲ ╲╱╲ ╲ ╲ ╲ ╲  ╲╱_╱╲ ╲╱ ╲ ╲___  ╲  
+ ╲ ╲_____╲  ╲ ╲_╲ ╲_╲  ╲ ╲_____╲  ╲ ╲____-  ╲ ╲_╲    ╲ ╲_╲  ╲╱╲_____╲ 
+  ╲╱_____╱   ╲╱_╱ ╱_╱   ╲╱_____╱   ╲╱____╱   ╲╱_╱     ╲╱_╱   ╲╱_____╱ 
+```
 
 Lead Programmer: 
     - Salem Lessem
@@ -115,109 +124,45 @@ FRC teams:
 Sites I used for this file to make it look *fancy*:
     - https://tree.nathanfriend.io/
     - https://patorjk.com/software/taag/
-
-
- 
-                                                                                               
-                                            Structure
-
-.
-└── Main/<br>
-    ├── cpp/<br>
-    │   ├── Control/<br>
-    │   │   └── Autonomous.cpp<br>
-    │   ├── RobotBase/<br>
-    │   │   ├── Robot.cpp<br>
-    │   │   └── RobotContainer.cpp<br>
-    │   └── Subsystems/<br>
-    │       ├── Drivetrain/<br>
-    │       │   ├── Commands.cpp<br>
-    │       │   ├── DriveSubsystem.cpp<br>
-    │       │   └── SwerveModule.cpp<br>
-    │       ├── NoteMechanism/<br>
-    │       │   ├── Intake.cpp<br>
-    │       │   ├── NoteMechanism.cpp<br>
-    │       │   └── Shooter.cpp<br>
-    │       └── Climber/<br>
-    │           ├── Climber.cpp<br>
-    │           └── Actuator.cpp<br>
-    └── include/<br>
-        ├── Control/<br>
-        │   ├── Autonomous.h<br>
-        │   └── Controllers.h<br>
-        ├── Headers╱<br>
-        │   ├── Headers.h<br>
-        │   ├── Libraries.h<br>
-        │   ├── ProjectInfo.h<br>
-        │   └── Util.h<br>
-        ├── RobotBase/<br>
-        │   ├── Parameters/<br>
-        │   │   ├── AutoParameters.h<br>
-        │   │   ├── MechParameters.h<br>
-        │   │   ├── RobotParameters.h        { Include this file to include all parameters }<br>
-        │   │   └── TeleopParameters.h<br>
-        │   ├── Specifications/<br>
-        │   │   ├── FullBotKrakens.h<br>
-        │   │   ├── GenericFalcons.h<br>
-        │   │   └── RobotSpecifications.h    { Include this file to include correct specifications }<br>
-        │   ├── Robot.h<br>
-        │   └── RobotContainer.h<br>
-        └── Subsystems/<br>
-            ├── Devices/<br>
-            │   ├── Devices.h<br>
-            │   ├── Field.h<br>
-            │   ├── Gyro.h<br>
-            │   └── PDH.h<br>
-            ├── Drivetrain/<br>
-            │   ├── Commands.h<br>
-            │   ├── DriveSubsystem.h<br>
-            │   └── SwerveModule.h<br>
-            ├── NoteMechanism/<br>
-            │   ├── Intake.h<br>
-            │   ├── NoteMechanism.h<br>
-            │   └── Shooter.h<br>
-            └── Climber/<br>
-                ├── Climber.h<br>
-                └── Actuator.h<br>
                 
-| file name | what it does |
-|:---------:|:------------:|
-|Main/cpp/Controll/Autonomous.cpp| Sends the commands for the autonomus routine |
-|Main/cpp/RobotBase/Robot.cpp| Calls the command based skeleton. Basically boilerplate |
-|Main/cpp/RobotBase/RobotContainer.cpp| The heart of the program. This calls the default triggers, as well as cofigures the button bindings |
-|Main/cpp/Subsystems/Drivetrain/Commands.cpp| sets the commands for the drivetrain. this includes the commands to set the trajectory and the pid tuners |
-|Main/cpp/Subsystems/Drivetrain/DriveSubsystem.cpp| sets up each swerve module and the kinimatics for the swerve modules |
-|Main/cpp/Subsystems/Drivetrain/SwerveModule.cpp| use |
-|Main/cpp/Subsystems/NoteMechanism/Intake.cpp| use |
-|Main/cpp/Subsystems/NoteMechanism/NoteMechanism.cpp| use |
-|Main/cpp/Subsystems/NoteMechanism/Shooter.cpp| use |
-|Main/cpp/Subsystems/Climber/Climber.cpp| Uses Actuator.cpp to controll the opening and closing of the pull up mech |
-|Main/cpp/Subsystems/Climber/Actuator.cpp| Declares the defaults for the climber motor as well as setting speed and direction of said motor |
-|Main/include/Control/Autonomous.h| use |
-|Main/include/Control/Controllers.h| use |
-|Main/include/Headers/Headers.h| use |
-|Main/include/Headers/Librarys.h| use |
-|Main/include/Headers/ProjectInfo.h| use |
-|Main/include/Headers/Util.h| use |
-|Main/include/RobotBase/Parameters/AutoParameters.h| use |
-|Main/include/RobotBase/Parameters/MechParameters.h| use |
-|Main/include/RobotBase/Parameters/RobotParameters.h| use |
-|Main/include/RobotBase/Parameters/TeleopParameters.h| use |
-|Main/include/RobotBase/Specifications/FullBotKrakens.h| use |
-|Main/include/RobotBase/Specifications/GenericFalcons.h| use |
-|Main/include/RobotBase/Specifications/RobotSpecifications.h| use |
-|Main/include/RobotBase/Robot.h| use |
-|Main/include/RobotBase/RobotContainer.h| use |
-|Main/include/Subsystems/Devices/Devices.h| use |
-|Main/include/Subsystems/Devices/Field.h| use |
-|Main/include/Subsystems/Devices/Gyro.h| use |
-|Main/include/Subsystems/Devices/PDH.h| use |
-|Main/include/Subsystems/Drivetrain/Commands.h| use |
-|Main/include/Subsystems/Drivetrain/DriveSubsystem.h| use |
-|Main/include/Subsystems/Drivetrain/SwerveModule.h| use |
-|Main/include/Subsystems/NoteMechanism/Intake.h| use |
-|Main/include/Subsystems/NoteMechanism/NoteMechanism.h| use |
-|Main/include/Subsystems/NoteMechanism/Shooter.h| use |
-|Main/include/Subsystems/Climber/Climber.h| use |
-|Main/include/Subsystems/Climber/Actuator.h| use |
-
+| File       |               |                      |                         | Purpose                                                                                                                      |
+|------------|---------------|----------------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| `cpp/`     |               |                      |                         | Defines the logic of the various components                                                                                  |
+|            | `Commands/`   |                      |                         |                                                                                                                              |
+|            |               | `autonomous.cpp`     |                         | Defines the logic for the autonomous routines                                                                                |
+|            | `RobotBase/`  |                      |                         |                                                                                                                              |
+|            |               | `Robot.cpp`          |                         | Calls the command scheduler, essentially boilerplate                                                                         |
+|            |               | `RobotContainer.cpp` |                         | The structure of the robot (including subsystems, commands, autonomous routines, and button mappings) is declared here       |
+|            | `Subsystems/` |                      |                         |                                                                                                                              |
+|            |               | `Climber/`           |                         |                                                                                                                              |
+|            |               |                      | `Climber.cpp`           | Declares the climber components and defines climber logic                                                                    |
+|            |               |                      | `Actuator.cpp`          | Controls the actuator motor                                                                                                  |
+|            |               | `Drivetrain/`        |                         |                                                                                                                              |
+|            |               |                      | `Commands.cpp`          | Advanced drivetrain commands, such as path following and odometry manipulation.                                              |
+|            |               |                      | `Drivetrain.cpp`        | Declares the swerve modules and defines drivetrain logic.                                                                    |
+|            |               |                      | `SwerveModule.cpp`      | Manages the control of the individual module, reports odometry data to the drivetrain.                                       |
+|            |               | `NoteMechanism/`     |                         |                                                                                                                              |
+|            |               |                      | `NoteMechanism.cpp`     | Declares Note Mechanism components and defines Note Mechanism logic                                                          |
+|            |               |                      | `Intake.cpp`            | Manages the control of the intake motors                                                                                     |
+|            |               |                      | `Shooter.cpp`           | Manages the control of the shooter motors                                                                                    |
+| `include/` |               |                      |                         | Provides headers for ease of use, controls what components are part of what                                                  |
+|            | `Control/`    |                      |                         |                                                                                                                              |
+|            |               | `Controllers.h`      |                         | Seperates the controllers from the program, allowing hot swappable controllers and custom control schemes                    |
+|            | `Headers/`    |                      |                         |                                                                                                                              |
+|            |               | `Headers.h`          |                         | Manages file inclusion and should be included in every file not included in it                                               |
+|            |               | `Libraries.h`        |                         | Includes ALL libraries for use in the program (std and 3rd party)                                                            |
+|            |               | `Util.h`             |                         | Utility variables and structs that make passing data around the project easier.  Used extensively in the drivetrain          |
+|            | `RobotBase/`  |                      |                         |                                                                                                                              |
+|            |               | `Parameters/`        |                         |                                                                                                                              |
+|            |               |                      | `AutoParameters.h`      | Autonomous mode parameters, non robot specific.                                                                              |
+|            |               |                      | `MechParameters.h`      | Mechanism parameters, including motor IDs and configuration values                                                           |
+|            |               |                      | `TeleopParameters.h`    | Teleoperated mode parameters, incuding control preferences                                                                   |
+|            |               |                      | `RobotParameters.h`     | Combines the 3 previous files into one for easy inclusion                                                                    |
+|            |               | `Specifications/`    |                         |                                                                                                                              |
+|            |               |                      | `RobotSpecifications.h` | Manages the inclusion of robot specific variables, such as magnet offset.  Includes all other files in the directory (sorta) |
+|            |               |                      | `*Robot_Name*.h`        | Specifications for a specific robot, usually denoted by a specific name                                                      |
+|            | `Devices/`    |                      |                         |                                                                                                                              |
+|            |               | `Devices.h`          |                         | Includes all files in the Devices directory for easy inclusion                                                               |
+|            |               | `*Device*.h`         |                         | Singleton class to allow access to devices throughout the program, such as the gyro or the PDH                               |
+|            |               |                      |                         |                                                                                                                              |
+|            |               |                      |                         |                                                                                                                              |
