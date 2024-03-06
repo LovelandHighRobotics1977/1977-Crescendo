@@ -3,7 +3,7 @@ Robot code for the 2024 FRC game Crecendo
 This is the known working code, should be used as a base.
 
 > [!WARNING]  
-> This code WILL be overwritten at some point, and is subject to random-ass changes on a whim
+> This code WILL be overwritten at some point, and is subject to random changes on a whim
 > > IE: when I forget which branch I'm on
 
 ---
