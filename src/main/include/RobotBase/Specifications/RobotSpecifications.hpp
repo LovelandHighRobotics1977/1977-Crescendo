@@ -17,7 +17,7 @@
  * 
  * - _Programming (Salem's swerve)  (kraken x60s drive, falcons angle)
  */ 
-#define _SalemsBot
+#define _1822bot
 
 #if defined(_GenericFalconsBot)
 #include "RobotBase/Specifications/GenericFalcons.hpp"
