@@ -23,6 +23,7 @@ void Shooter::setShooter(double speed){
 }
 
 void Shooter::setShooterAngle(units::turn_t angle){
+    std::cout<<angle.value()<<std::endl;
     m_shooterAngle.SetControl(ctre::phoenix6::controls::PositionDutyCycle{
         max(Mechanism::Shooter::Angle::Preset::MIN, min(angle, Mechanism::Shooter::Angle::Preset::MAX))
     });

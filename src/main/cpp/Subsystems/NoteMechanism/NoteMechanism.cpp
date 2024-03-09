@@ -34,23 +34,38 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 
 void NoteMechanism::AngleShooter(){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
-	if((tagID == 3) || (tagID == 4) || (tagID = 7) || (tagID == 8)){
-        // Speaker Tag Detected, set to distance formula
+	if((tagID == 3) || (tagID == 4)){
+		// Red speaker tag detected, run "auto aim computations"
+		/**
+		 * This complex function takes the position of the robot, and the red speaker, calculates the distance to the speaker,
+		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
+		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
+		*/
 		m_shooter.setShooterAngle(
-			units::turn_t{
-				(
-					0.0012 * 
-					nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tlong", Mechanism::Shooter::Angle::Preset::SpeakerClose.value())
-				) -
-				0.0146
-			}
-		);
-		
-    }else if((tagID == 5) || (tagID == 6)){
-        // Amp Tag Detected, set to max angle for scoring
-        m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
+			units::turn_t{ units::radian_t{ ( std::atan( units::meter_t{ ( 82_in + 3_in ) }.value() / (
+				std::sqrt(
+					std::pow(units::meter_t{652_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[0],2) + 
+					std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
+				)
+			)))} - units::radian_t{23_deg}
+		});
+	}else if((tagID = 7) || (tagID == 8)){
+        // Blue speaker tag detected, run "auto aim computations"
+		/**
+		 * This complex function takes the position of the robot, and the blue speaker, calculates the distance to the speaker,
+		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
+		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
+		*/
+		m_shooter.setShooterAngle(
+			units::turn_t{ units::radian_t{ ( std::atan( units::meter_t{ (82_in + 3_in ) }.value() / (
+				std::sqrt(
+					std::pow(units::meter_t{-1.5_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[0],2) + 
+					std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
+				)
+			)))} - units::radian_t{23_deg}
+		});
 	}else{
-		// Unknown Tag Detected, set to mid angle
+		// Unknown Tag Detected, set to max angle
 		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::SpeakerClose);
 	}
 }
