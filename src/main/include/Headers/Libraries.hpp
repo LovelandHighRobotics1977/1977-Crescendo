@@ -119,5 +119,6 @@
 #include <networktables/DoubleTopic.h>
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
+#include <networktables/NTSendable.h>
 
 #endif  // _LIBRARIES_H

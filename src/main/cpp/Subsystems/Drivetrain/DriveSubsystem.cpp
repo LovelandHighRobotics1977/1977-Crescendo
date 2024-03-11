@@ -49,7 +49,7 @@ void DriveSubsystem::Periodic() {
 
 void DriveSubsystem::Drive(DriveData data) {
 	if(data.targetAprilTag){
-		fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, -5_deg_per_s * nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)}, DriveSubsystem::GetHeading());
+		fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, -2.5_deg_per_s * nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)}, DriveSubsystem::GetHeading());
 	}else{
 		fieldRelativeSpeeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate}, DriveSubsystem::GetHeading());
 		robotRelativeSpeeds = frc::ChassisSpeeds{data.forward, -data.strafe, data.rotate};

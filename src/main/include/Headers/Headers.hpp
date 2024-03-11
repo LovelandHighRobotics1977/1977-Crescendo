@@ -2,6 +2,7 @@
 #define _HEADERS_H
 
 // Project Info, contains credits, license, and other important stuffs
+// I don't care Dean. This is staying and you can cry about it.  
 #include "ProjectInfo.hpp"
 
 // Libraries ( very important )
