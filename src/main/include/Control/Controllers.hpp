@@ -108,7 +108,7 @@ class Operator : public frc2::SubsystemBase {
 		bool pickupNote;
 		bool reverseNote;
 		bool shootNote;
-
+		bool autoAim;
 		bool openClimber;
 		bool closeClimber;
 
@@ -120,6 +120,8 @@ class Operator : public frc2::SubsystemBase {
 
 			openClimber = m_XboxController.GetLeftBumper();
 			closeClimber = m_XboxController.GetRightBumper();
+
+			autoAim = m_XboxController.GetXButton();
 		}
 		
 	private:

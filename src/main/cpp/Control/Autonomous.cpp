@@ -145,7 +145,7 @@ frc2::CommandPtr AutoRoutine::redCenterAdvanced(DriveSubsystem *drive, NoteMecha
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 6_fps, 0_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 5.75_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -190,7 +190,7 @@ frc2::CommandPtr AutoRoutine::redCenterAdvanced(DriveSubsystem *drive, NoteMecha
 				),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, -1_fps, 0_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({-6_fps, -2_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -199,71 +199,10 @@ frc2::CommandPtr AutoRoutine::redCenterAdvanced(DriveSubsystem *drive, NoteMecha
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				drive->ZeroOdometry({0_m,0_m,0_deg})
-				
-				/*frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 1.5_fps, 0_deg_per_s, 0});}, {drive}),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-5.5_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, -33_deg_per_s, 0});}, {drive}),
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::InstantCommand([drive] { drive->Drive({});}),
-				frc2::ParallelRaceGroup(
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(0.25_s)
-				),
-				noteMechanism->ShootNote(),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({3_fps, 5_fps, 0_deg_per_s, 0});}, {drive}),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-3_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::InstantCommand([drive] { drive->Drive({});}),
-				frc2::ParallelRaceGroup(
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(0.25_s)
-				),
-				noteMechanism->ShootNote(),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({1.5_fps, -5.25_fps, 0_deg_per_s, 0});}, {drive}),
-					frc2::WaitCommand(2_s)
-				),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-4_fps, 0_fps, -10_deg_per_s, 0});}, {drive}),
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::InstantCommand([drive] { drive->Drive({});}),
-				frc2::ParallelRaceGroup(
-					noteMechanism->PickupNote(),
-					frc2::WaitCommand(0.25_s)
-				),
-				noteMechanism->ShootNote(),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
-					frc2::WaitCommand(2_s)
-				),
-				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 150_deg_per_s, 0});}, {drive}),
-					frc2::WaitCommand(1_s)
-				),
-				frc2::InstantCommand([drive] { drive->Drive({});}),
-				drive->ZeroOdometry({0_m,0_m,0_deg})*/
 			)
 	).ToPtr();
 }
-//1977 right side
+//1977 left side
 //To be Tested
 //The basics are able to be used for both bots
 
