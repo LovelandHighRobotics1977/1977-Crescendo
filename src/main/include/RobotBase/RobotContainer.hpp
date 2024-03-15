@@ -55,6 +55,7 @@ class RobotContainer {
 		frc2::CommandPtr a_blueRightBasic = AutoRoutine::blueRightBasic(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_blueLeftBasic = AutoRoutine::blueLeftBasic(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_blueRightRun = AutoRoutine::blueRightRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_blueLeftRun = AutoRoutine::blueLeftRun(&m_drive, &m_noteMechanism);
 
 		//1822 auto routines red
 

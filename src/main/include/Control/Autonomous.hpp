@@ -25,6 +25,7 @@ namespace AutoRoutine {
     frc2::CommandPtr blueRightBasic(DriveSubsystem *drive, NoteMechanism *noteMechanism);
     frc2::CommandPtr blueLeftBasic(DriveSubsystem *drive, NoteMechanism *noteMechanism);
     frc2::CommandPtr blueRightRun(DriveSubsystem *drive, NoteMechanism *noteMechanism);
+    frc2::CommandPtr blueLeftRun(DriveSubsystem *drive, NoteMechanism *noteMechanism);
 
     //1822 red zones
     frc2::CommandPtr redCenterBasic1822(DriveSubsystem *drive, NoteMechanism *noteMechanism);

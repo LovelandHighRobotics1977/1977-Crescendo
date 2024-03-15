@@ -28,7 +28,7 @@ void RobotContainer::ConfigureDefaultCommands() {
 		{&m_drive}
 	));
 	m_noteMechanism.SetDefaultCommand(frc2::RunCommand( 
-		[this] { m_noteMechanism.AngleShooter(m_operator.autoAim); },
+		[this] { m_noteMechanism.AngleShooter(); },
 		{&m_noteMechanism}
 	));
 }
@@ -54,28 +54,55 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 void RobotContainer::ConfigureAutonomousChooser() {
-	//red left basic and red right basic may be deleted in the future
-	m_chooser.AddOption("redCenterBasic", a_redCenterBasic.get());
-	m_chooser.AddOption("redCenterRun", a_redCenterRun.get());
-	m_chooser.AddOption("redCenterAdvanced", a_redCenterAdvanced.get());
-	m_chooser.AddOption("redLeftBasic", a_redLeftBasic.get());
-	m_chooser.AddOption("redRightBasic", a_redRightBasic.get());
-	m_chooser.SetDefaultOption("redLeftRun", a_redLeftRun.get());
-	m_chooser.AddOption("redRightRun", a_redRightRun.get());
+    // Auto routines for both RED and BLUE alliances:
+    if(frc::RobotBase::IsReal() || !frc::RobotBase::IsReal()){
 
-	m_chooser.AddOption("blueCenterBasic", a_blueCenterBasic.get());
-	m_chooser.AddOption("blueCenterRun", a_blueCenterRun.get());
-	m_chooser.AddOption("blueCenterAdvanced", a_blueCenterAdvanced.get());
-	m_chooser.AddOption("blueLeftBasic", a_blueLeftBasic.get());
-	m_chooser.AddOption("blueLeftBasic", a_blueRightBasic.get());
-	m_chooser.AddOption("blueRightRun", a_blueRightRun.get());
+        // Right
 
+        // Center
+        m_chooser.SetDefaultOption("runNoScore", a_runNoScore.get());
 
-	m_chooser.AddOption("redCenterBasic1822", a_redCenterBasic1822.get());
-	m_chooser.AddOption("redRightBasic1822", a_redRightBasic1822.get());
-	m_chooser.AddOption("redZone8", a_redZone8.get());
+        // Left
+        
+    }
 
-	m_chooser.AddOption("runNoScore", a_runNoScore.get());
+    // Auto routines for RED alliance
+    if(frc::DriverStation::GetAlliance() == frc::DriverStation::Alliance::kRed){
+
+        // Right
+        m_chooser.AddOption("redRightBasic", a_redRightBasic.get());
+        m_chooser.AddOption("redRightRun", a_redRightRun.get());
+        m_chooser.AddOption("redRightBasic1822", a_redRightBasic1822.get());
+        
+        // Center
+        m_chooser.AddOption("redCenterBasic", a_redCenterBasic.get());
+        m_chooser.AddOption("redCenterRun", a_redCenterRun.get());
+        m_chooser.AddOption("redCenterAdvanced", a_redCenterAdvanced.get());
+        m_chooser.AddOption("redCenterBasic1822", a_redCenterBasic1822.get());
+
+        // Left
+        m_chooser.AddOption("redLeftBasic", a_redLeftBasic.get());
+        m_chooser.AddOption("redLeftRun", a_redLeftRun.get());
+        
+        // UNKNOWN
+        m_chooser.AddOption("redZone8", a_redZone8.get());
+    }
+
+    // Auto routines for BLUE alliance
+    if(frc::DriverStation::GetAlliance() == frc::DriverStation::Alliance::kBlue){
+
+        // Right
+        m_chooser.AddOption("blueLeftBasic", a_blueLeftBasic.get());
+
+        // Center
+        m_chooser.AddOption("blueCenterBasic", a_blueCenterBasic.get());
+        m_chooser.AddOption("blueCenterRun", a_blueCenterRun.get());
+        m_chooser.AddOption("blueCenterAdvanced", a_blueCenterAdvanced.get());
+
+        // Left
+        m_chooser.AddOption("blueRightBasic", a_blueRightBasic.get());
+        m_chooser.AddOption("blueRightRun", a_blueRightRun.get());
+    }
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() { 

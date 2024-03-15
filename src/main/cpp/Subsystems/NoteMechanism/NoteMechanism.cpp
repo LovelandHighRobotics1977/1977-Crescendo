@@ -32,8 +32,7 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 	);
 }
 
-void NoteMechanism::AngleShooter(bool autoAim){
-	if(autoAim == false){
+void NoteMechanism::AngleShooter(){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
 	if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
@@ -68,8 +67,5 @@ void NoteMechanism::AngleShooter(bool autoAim){
 	}else{
 		// Unknown Tag Detected, set to max angle
 		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::SpeakerClose);
-	}
-	}else{
-		m_shooter.setShooterAngle(50_deg);
 	}
 }
