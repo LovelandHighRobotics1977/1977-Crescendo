@@ -27,8 +27,6 @@
 #include "RobotBase/Specifications/1822bot.hpp"
 #elif defined(_SalemsBot)
 #include "RobotBase/Specifications/SalemsBot.hpp"
-#elif defined(_Programming)
-#include "RobotBase/Specifications/Programming.hpp"
 #else
 #error "No Robot Specified, Please define a robot"
 #endif

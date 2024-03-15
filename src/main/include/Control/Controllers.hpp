@@ -109,9 +109,6 @@ class Operator : public frc2::SubsystemBase {
 		bool reverseNote;
 		bool shootNote;
 
-		bool lowerShooter;
-		bool raiseShooter;
-
 		bool openClimber;
 		bool closeClimber;
 
@@ -120,9 +117,6 @@ class Operator : public frc2::SubsystemBase {
 			reverseNote = m_XboxController.GetBButton();
 
 			shootNote = m_XboxController.GetRightTriggerAxis() > 0.1;
-
-			lowerShooter = m_XboxController.GetLeftStickButton();
-			raiseShooter = m_XboxController.GetRightStickButton();
 
 			openClimber = m_XboxController.GetLeftBumper();
 			closeClimber = m_XboxController.GetRightBumper();
