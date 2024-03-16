@@ -4,7 +4,7 @@ Shooter::Shooter(){
 	shooterMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Coast);
     m_leftShooter.GetConfigurator().Apply(shooterMotorConfig);
     m_rightShooter.GetConfigurator().Apply(shooterMotorConfig);
-/*
+    /*
     angleEncoderConfig.MagnetSensor.WithMagnetOffset(-.242676);
     angleEncoderConfig.MagnetSensor.WithAbsoluteSensorRange(ctre::phoenix6::signals::AbsoluteSensorRangeValue::Unsigned_0To1);
     angleEncoderConfig.MagnetSensor.WithSensorDirection(ctre::phoenix6::signals::SensorDirectionValue::Clockwise_Positive);

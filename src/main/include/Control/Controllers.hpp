@@ -97,7 +97,7 @@ class Driver : public frc2::SubsystemBase {
 
 			double forward_deadzone = 0.01;
 			double strafe_deadzone = 0.05;
-			double rotate_deadzone = 0.1;
+			double rotate_deadzone = 0.2;
 	};
 
 class Operator : public frc2::SubsystemBase {

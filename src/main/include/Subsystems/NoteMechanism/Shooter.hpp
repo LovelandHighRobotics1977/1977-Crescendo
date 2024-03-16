@@ -20,10 +20,10 @@ class Shooter : public frc2::SubsystemBase {
 
 		ctre::phoenix6::hardware::TalonFX m_leftShooter{Mechanism::Shooter::Bottom};
 		ctre::phoenix6::hardware::TalonFX m_rightShooter{Mechanism::Shooter::Top};
-/*
-		ctre::phoenix6::hardware::TalonFX m_shooterAngle{Mechanism::Shooter::Angle::Winch};
-		ctre::phoenix6::hardware::CANcoder m_shooterAngleEncoder{Mechanism::Shooter::Angle::Encoder};
-*/
+
+		//ctre::phoenix6::hardware::TalonFX m_shooterAngle{Mechanism::Shooter::Angle::Winch};
+		//ctre::phoenix6::hardware::CANcoder m_shooterAngleEncoder{Mechanism::Shooter::Angle::Encoder};
+
 	    ctre::phoenix6::configs::TalonFXConfiguration shooterMotorConfig{};
 		//ctre::phoenix6::configs::TalonFXConfiguration angleMotorConfig{};
 		//ctre::phoenix6::configs::CANcoderConfiguration angleEncoderConfig{};

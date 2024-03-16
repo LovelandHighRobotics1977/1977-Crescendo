@@ -36,7 +36,7 @@ void NoteMechanism::AngleShooter(){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
 	if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
-	
+		/**
 		 * This complex function takes the position of the robot, and the red speaker, calculates the distance to the speaker,
 		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
 		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
@@ -51,7 +51,7 @@ void NoteMechanism::AngleShooter(){
 		});
 	}else if((tagID = 7) || (tagID == 8)){
         // Blue speaker tag detected, run "auto aim computations"
-		
+		/**
 		 * This complex function takes the position of the robot, and the blue speaker, calculates the distance to the speaker,
 		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
 		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
@@ -68,4 +68,5 @@ void NoteMechanism::AngleShooter(){
 		// Unknown Tag Detected, set to max angle
 		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::SpeakerClose);
 	}
-}*/
+}
+*/

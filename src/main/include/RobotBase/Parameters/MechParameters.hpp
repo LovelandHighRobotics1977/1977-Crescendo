@@ -8,7 +8,7 @@ namespace Mechanism {
 	namespace Shooter {
 		static constexpr int Top = 15;
 		static constexpr int Bottom = 16;
-		/*namespace Angle {
+		namespace Angle {
 			static constexpr int Winch = 17;
 			static constexpr int Encoder = 19;
 			static constexpr auto MagnetOffset = 0.243896_tr;
@@ -23,7 +23,7 @@ namespace Mechanism {
 				static constexpr double ScalingFactor = 1000000;
 				static constexpr double Offset = 0.1;
 			}
-		}*/
+		}
 	}
 	namespace Climber {
 		static constexpr int Limit = 0;
