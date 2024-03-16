@@ -15,7 +15,6 @@ Shooter::Shooter(){
     angleMotorConfig.Feedback.WithRemoteCANcoder(m_shooterAngleEncoder);
     angleMotorConfig.MotorOutput.Inverted = true;
     m_shooterAngle.GetConfigurator().Apply(angleMotorConfig);
-    
 }
 
 void Shooter::setShooter(double speed){

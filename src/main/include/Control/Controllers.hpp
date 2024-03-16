@@ -97,7 +97,7 @@ class Driver : public frc2::SubsystemBase {
 
 			double forward_deadzone = 0.01;
 			double strafe_deadzone = 0.05;
-			double rotate_deadzone = 0.1;
+			double rotate_deadzone = 0.2;
 	};
 
 class Operator : public frc2::SubsystemBase {
@@ -108,12 +108,9 @@ class Operator : public frc2::SubsystemBase {
 		bool pickupNote;
 		bool reverseNote;
 		bool shootNote;
-		bool autoAim = false;
-		bool autoAimToggle;
+
 		bool openClimber;
 		bool closeClimber;
-
-		bool xtoggled;
 
 		void update(){
 			pickupNote = m_XboxController.GetAButton();
@@ -123,8 +120,6 @@ class Operator : public frc2::SubsystemBase {
 
 			openClimber = m_XboxController.GetLeftBumper();
 			closeClimber = m_XboxController.GetRightBumper();
-
-			
 		}
 		
 	private:

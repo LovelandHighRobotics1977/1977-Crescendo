@@ -1,5 +1,5 @@
 #include "subsystems/NoteMechanism/NoteMechanism.hpp"
-#include "Control/Controllers.hpp"
+
 NoteMechanism::NoteMechanism(){}
 
 frc2::StartEndCommand NoteMechanism::PickupNote(){
