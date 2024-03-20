@@ -26,7 +26,7 @@ void RobotContainer::ConfigureDefaultCommands() {
 		{&m_drive}
 	));
 	m_noteMechanism.SetDefaultCommand(frc2::RunCommand( 
-		[this] { m_noteMechanism.AngleShooter(); },
+		[this] { m_noteMechanism.AngleShooter(m_operator.setAimToMax); },
 		{&m_noteMechanism}
 	));
 }

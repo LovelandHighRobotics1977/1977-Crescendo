@@ -32,9 +32,13 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 	);
 }
 
-void NoteMechanism::AngleShooter(){
+void NoteMechanism::AngleShooter(bool override){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
-	if((tagID == 3) || (tagID == 4)){
+	if(override || (tagID == -1)){
+		// No tag detected or override enabled, set angle to max
+		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
+		return;
+	}else if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
 		/**
 		 * This complex function takes the position of the robot, and the red speaker, calculates the distance to the speaker,
@@ -64,6 +68,6 @@ void NoteMechanism::AngleShooter(){
 		});
 	}else{
 		// Unknown Tag Detected, set to max angle
-		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::SpeakerClose);
+		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
 	}
 }
