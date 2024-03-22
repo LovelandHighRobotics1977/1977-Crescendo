@@ -19,9 +19,7 @@ namespace Mechanism {
 				static constexpr auto MAX = 0.101319_tr;
 			}
 			namespace AutoAim {
-				static constexpr double Exponent = 2.15;
-				static constexpr double ScalingFactor = 1000000;
-				static constexpr double Offset = 0.1;
+				static constexpr auto heightOffset = units::inch_t{ 3 };
 			}
 		}
 	}

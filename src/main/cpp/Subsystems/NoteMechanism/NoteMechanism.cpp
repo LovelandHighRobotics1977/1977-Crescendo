@@ -34,10 +34,11 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 
 void NoteMechanism::AngleShooter(bool override){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
-	if(override || (tagID == -1)){
+	if((frc::RobotController::GetTeamNumber() == 1822)){
+		// Bot is 1822, DO NOT SET SHOOTER ANGLE
+	}else if(override || (tagID == -1)){
 		// No tag detected or override enabled, set angle to max
 		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
-		return;
 	}else if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
 		/**
@@ -50,7 +51,7 @@ void NoteMechanism::AngleShooter(bool override){
 			std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
 		);
 		m_shooter.setShooterAngle( units::turn_t{ 
-			units::radian_t{ ( std::atan( units::meter_t{ ( 82_in + 3_in ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
+			units::radian_t{ ( std::atan( units::meter_t{ ( 82_in + Mechanism::Shooter::Angle::AutoAim::heightOffset ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
 		});
 	}else if((tagID = 7) || (tagID == 8)){
         // Blue speaker tag detected, run "auto aim computations"
@@ -64,7 +65,7 @@ void NoteMechanism::AngleShooter(bool override){
 			std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
 		);
 		m_shooter.setShooterAngle( units::turn_t{ 
-			units::radian_t{ ( std::atan( units::meter_t{ (82_in + 3_in ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
+			units::radian_t{ ( std::atan( units::meter_t{ (82_in + Mechanism::Shooter::Angle::AutoAim::heightOffset ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
 		});
 	}else{
 		// Unknown Tag Detected, set to max angle

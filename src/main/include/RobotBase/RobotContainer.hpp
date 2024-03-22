@@ -38,37 +38,31 @@ class RobotContainer {
 		frc::SendableChooser<int> c_position;
 		frc::SendableChooser<int> c_type;
 		frc::SendableChooser<int> c_allianceOverride;
-		frc::SendableChooser<bool> c_noScoreJustRun;
+		frc::SendableChooser<int> c_routineOverride;
 		frc::SendableChooser<bool> c_masterOverride;
 		frc::SendableChooser<frc2::Command*> c_masterRoutineSelector;
 
-		// 1977 auto routines red
+		// Auto routines RED
 		frc2::CommandPtr a_redCenterBasic = AutoRoutine::redCenterBasic(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_redCenterRun = AutoRoutine::redCenterRun(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_redCenterAdvanced = AutoRoutine::redCenterAdvanced(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redRightBasic = AutoRoutine::redRightBasic(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redRightRun = AutoRoutine::redRightRun(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redLeftBasic = AutoRoutine::redLeftBasic(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redLeftRun = AutoRoutine::redLeftRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_redSourceBasic = AutoRoutine::redSourceBasic(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_redSourceRun = AutoRoutine::redSourceRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_redAmpBasic = AutoRoutine::redAmpBasic(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_redAmpRun = AutoRoutine::redAmpRun(&m_drive, &m_noteMechanism);
 
-		// 1977auto routines blue
-
+		// Auto routines BLUE
 		frc2::CommandPtr a_blueCenterBasic = AutoRoutine::blueCenterBasic(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_blueCenterRun = AutoRoutine::blueCenterRun(&m_drive, &m_noteMechanism);
 		frc2::CommandPtr a_blueCenterAdvanced = AutoRoutine::blueCenterAdvanced(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_blueRightBasic = AutoRoutine::blueRightBasic(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_blueRightRun = AutoRoutine::blueRightRun(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_blueLeftBasic = AutoRoutine::blueLeftBasic(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_blueLeftRun = AutoRoutine::blueLeftRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_blueAmpBasic = AutoRoutine::blueAmpBasic(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_blueAmpRun = AutoRoutine::blueAmpRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_blueSourceBasic = AutoRoutine::blueSourceBasic(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_blueSourceRun = AutoRoutine::blueSourceRun(&m_drive, &m_noteMechanism);
 
-		// 1822 auto routines red
-
-		frc2::CommandPtr a_redCenterBasic1822 = AutoRoutine::redCenterBasic1822(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redRightBasic1822 = AutoRoutine::redRightBasic1822(&m_drive, &m_noteMechanism);
-		frc2::CommandPtr a_redZone8 = AutoRoutine::redZone8(&m_drive, &m_noteMechanism);
-
-		// Any bot auto routines
-		frc2::CommandPtr a_runNoScore = AutoRoutine::runNoScore(&m_drive, &m_noteMechanism);
+		// Auto routines ANY
+		frc2::CommandPtr a_onlyRun = AutoRoutine::onlyRun(&m_drive, &m_noteMechanism);
+		frc2::CommandPtr a_onlyScore = AutoRoutine::onlyScore(&m_drive, &m_noteMechanism);
 };
 
 #endif  // _ROBOT_CONTAINER_H

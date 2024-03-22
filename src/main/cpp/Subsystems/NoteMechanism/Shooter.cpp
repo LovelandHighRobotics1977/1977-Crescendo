@@ -19,7 +19,7 @@ Shooter::Shooter(){
 
 void Shooter::setShooter(double speed){
 	m_leftShooter.Set(speed);
-    m_rightShooter.Set(-speed * 0.95);
+    m_rightShooter.Set(-speed);
 }
 
 void Shooter::setShooterAngle(units::turn_t angle){
