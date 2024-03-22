@@ -308,7 +308,10 @@ frc2::CommandPtr AutoRoutine::redLeftRun(DriveSubsystem *drive, NoteMechanism *n
         drive->ZeroOdometry({0_m, 0_m, 0_deg}),
             frc2::SequentialCommandGroup(
 				frc2::InstantCommand([drive] { drive->Drive({});}),
-				noteMechanism->ShootNote(),			
+				noteMechanism->ShootNote(),
+				frc2::ParallelRaceGroup(
+					frc2::WaitCommand(3_s)
+				),			
 				frc2::ParallelRaceGroup(
 					frc2::RunCommand([drive] { drive->Drive({-1.5_fps, -0.5_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
@@ -339,7 +342,10 @@ frc2::CommandPtr AutoRoutine::redRightRun(DriveSubsystem *drive, NoteMechanism *
         drive->ZeroOdometry({0_m, 0_m, 0_deg}),
             frc2::SequentialCommandGroup(
                 frc2::InstantCommand([drive] { drive->Drive({});}),
-                noteMechanism->ShootNote(),            
+                noteMechanism->ShootNote(),  
+				frc2::ParallelRaceGroup(
+					frc2::WaitCommand(3_s)
+				),	          
                 frc2::ParallelRaceGroup(
                     frc2::RunCommand([drive] { drive->Drive({-1.5_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
                     frc2::WaitCommand(1_s)
@@ -611,7 +617,10 @@ frc2::CommandPtr AutoRoutine::blueLeftRun(DriveSubsystem *drive, NoteMechanism *
         drive->ZeroOdometry({0_m, 0_m, 0_deg}),
             frc2::SequentialCommandGroup(
                 frc2::InstantCommand([drive] { drive->Drive({});}),
-                noteMechanism->ShootNote(),            
+                noteMechanism->ShootNote(),
+				frc2::ParallelRaceGroup(
+					frc2::WaitCommand(3_s)
+				),	            
                 frc2::ParallelRaceGroup(
                     frc2::RunCommand([drive] { drive->Drive({-1.5_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
                     frc2::WaitCommand(1_s)
@@ -641,7 +650,10 @@ frc2::CommandPtr AutoRoutine::blueRightRun(DriveSubsystem *drive, NoteMechanism 
         drive->ZeroOdometry({0_m, 0_m, 0_deg}),
             frc2::SequentialCommandGroup(
 				frc2::InstantCommand([drive] { drive->Drive({});}),
-				noteMechanism->ShootNote(),			
+				noteMechanism->ShootNote(),	
+				frc2::ParallelRaceGroup(
+					frc2::WaitCommand(3_s)
+				),			
 				frc2::ParallelRaceGroup(
 					frc2::RunCommand([drive] { drive->Drive({-1.5_fps, -0.5_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
