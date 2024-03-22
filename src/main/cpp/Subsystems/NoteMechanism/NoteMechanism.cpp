@@ -34,10 +34,11 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 
 void NoteMechanism::AngleShooter(bool override){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
-	if(override || (tagID == -1)){
+	if((frc::RobotController::GetTeamNumber() == 1822) || (Drivetrain::Measurements::team_number == 1822)){
+		// Bot is 1822, DO NOT SET SHOOTER ANGLE
+	}else if(override || (tagID == -1)){
 		// No tag detected or override enabled, set angle to max
 		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
-		return;
 	}else if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
 		/**

@@ -55,14 +55,15 @@ void RobotContainer::ConfigureAutonomousChooser() {
 
 	// Configure Autonomous Selection
 		// Position
-		c_position.AddOption("Left",1);
+		c_position.AddOption("Amp",1);
 		c_position.AddOption("Center",2);
-		c_position.AddOption("Right",3);
+		c_position.AddOption("Source",3);
 		frc::Shuffleboard::GetTab("Autonomous").Add(c_position);
 		// Type { Falls back to basic if no auto exists }
 		c_type.AddOption("Basic",1);
 		c_type.AddOption("Run",2);
 		c_type.AddOption("Advanced",3);
+		c_type.AddOption("Delay",4);
 		frc::Shuffleboard::GetTab("Autonomous").Add(c_type);
 
 	// Configure Autonomous Overrides
@@ -72,9 +73,10 @@ void RobotContainer::ConfigureAutonomousChooser() {
 		c_allianceOverride.AddOption("Blue",2);
 		frc::Shuffleboard::GetTab("Autonomous").Add(c_allianceOverride);
 		// Score in auto Override
-		c_noScoreJustRun.SetDefaultOption("--",false);
-		c_noScoreJustRun.AddOption("Run w/ no score",true);
-		frc::Shuffleboard::GetTab("Autonomous").Add(c_noScoreJustRun);
+		c_routineOverride.SetDefaultOption("--",0);
+		c_routineOverride.AddOption("ONLY RUN",1);
+		c_routineOverride.AddOption("ONLY SCORE",2);
+		frc::Shuffleboard::GetTab("Autonomous").Add(c_routineOverride);
 
 	// Configure the Master Override
 		// Configure the enable toggle
@@ -82,31 +84,28 @@ void RobotContainer::ConfigureAutonomousChooser() {
 		c_masterOverride.AddOption("Enabled",true);
 		frc::Shuffleboard::GetTab("Autonomous").Add(c_masterOverride);
 		// Configure the master routine selector
-		c_masterRoutineSelector.AddOption("runNoScore", a_runNoScore.get());
-		c_masterRoutineSelector.AddOption("redZone8", a_redZone8.get());
-	// -------------------------
-		c_masterRoutineSelector.AddOption("redCenterBasic1822", a_redCenterBasic1822.get());
-		c_masterRoutineSelector.AddOption("redRightBasic1822", a_redRightBasic1822.get());
+		c_masterRoutineSelector.AddOption("OnlyRunNoScore", a_onlyRun.get());
+		c_masterRoutineSelector.AddOption("OnlyScoreNoRun", a_onlyScore.get());
 	// -------------------------
 		c_masterRoutineSelector.AddOption("redCenterBasic", a_redCenterBasic.get());
 		c_masterRoutineSelector.AddOption("redCenterRun", a_redCenterRun.get());
 		c_masterRoutineSelector.AddOption("redCenterAdvanced", a_redCenterAdvanced.get());
 
-		c_masterRoutineSelector.AddOption("redRightBasic", a_redRightBasic.get());
-		c_masterRoutineSelector.AddOption("redRightRun", a_redRightRun.get());
+		c_masterRoutineSelector.AddOption("redSourceBasic", a_redSourceBasic.get());
+		c_masterRoutineSelector.AddOption("redSourceRun", a_redSourceRun.get()); // Im at the red SOUCE
 
-		c_masterRoutineSelector.AddOption("redLeftBasic", a_redLeftBasic.get());
-		c_masterRoutineSelector.AddOption("redLeftRun", a_redLeftRun.get());
+		c_masterRoutineSelector.AddOption("redAmpBasic", a_redAmpBasic.get());
+		c_masterRoutineSelector.AddOption("redAmpRun", a_redAmpRun.get());
 	// -------------------------
 		c_masterRoutineSelector.AddOption("blueCenterBasic", a_blueCenterBasic.get());
 		c_masterRoutineSelector.AddOption("blueCenterRun", a_blueCenterRun.get());
 		c_masterRoutineSelector.AddOption("blueCenterAdvanced", a_blueCenterAdvanced.get());
 		
-		c_masterRoutineSelector.AddOption("blueRightBasic", a_blueRightBasic.get());
-		c_masterRoutineSelector.AddOption("blueRightRun", a_blueRightRun.get());
+		c_masterRoutineSelector.AddOption("blueAmpBasic", a_blueAmpBasic.get());
+		c_masterRoutineSelector.AddOption("blueAmpRun", a_blueAmpRun.get());
 
-		c_masterRoutineSelector.AddOption("blueLeftBasic", a_blueLeftBasic.get());
-		c_masterRoutineSelector.AddOption("blueLeftRun", a_blueLeftRun.get());
+		c_masterRoutineSelector.AddOption("blueSourceBasic", a_blueSourceBasic.get());
+		c_masterRoutineSelector.AddOption("blueSourceRun", a_blueSourceRun.get());
 		
 		frc::Shuffleboard::GetTab("Autonomous").Add(c_masterRoutineSelector);
 }
@@ -115,45 +114,53 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 	if(c_masterOverride.GetSelected()){
 		std::cout<<"USING MASTER OVERRIDE"<<std::endl;
 		return c_masterRoutineSelector.GetSelected();
-	}else if(c_noScoreJustRun.GetSelected()){
-		std::cout<<"USING SCORE OVERRIDE"<<std::endl;
-		return a_runNoScore.get();
+	}else if(c_routineOverride.GetSelected()){
+		std::cout<<"USING ROUTINE OVERRIDE"<<std::endl; switch(c_routineOverride.GetSelected()){
+			case 1: /* Only Run */ std::cout<<"USING ONLY RUN OVERRIDE"<<std::endl; return a_onlyRun.get();
+			case 2: /* Only Score */ std::cout<<"USING ONLY SCORE OVERRIDE"<<std::endl; return a_onlyScore.get();
+		}
 	}else if((frc::DriverStation::GetAlliance() == frc::DriverStation::Alliance::kRed && c_allianceOverride.GetSelected() != 2) || c_allianceOverride.GetSelected() == 1) {
 		// RED alliance autonomous
 		switch(c_position.GetSelected()){
-			case 1: /* Left */ switch(c_type.GetSelected()){
-				case 1: /* Basic */ std::cout<<"RED LEFT BASIC"<<std::endl; return a_redLeftBasic.get();
-				case 2: /* Run */ std::cout<<"RED LEFT RUN"<<std::endl; return a_redLeftRun.get();
-				case 3: /* Advanced */ std::cout<<"RED LEFT BASIC ( ADVANCED )"<<std::endl; return a_redLeftBasic.get();
+			case 1: /* Amp */ switch(c_type.GetSelected()){
+				case 1: /* Basic */ std::cout<<"RED AMP BASIC"<<std::endl; return a_redAmpBasic.get();
+				case 2: /* Run */ std::cout<<"RED AMP RUN"<<std::endl; return a_redAmpRun.get();
+				case 3: /* Advanced */ std::cout<<"RED AMP BASIC ( ADVANCED )"<<std::endl; return a_redAmpBasic.get();
+				case 4: /* Delay */ std::cout<<"RED AMP BASIC ( DELAY )"<<std::endl; return a_redAmpBasic.get();
 			}
 			case 2: /* Center */ switch(c_type.GetSelected()){
 				case 1: /* Basic */ std::cout<<"RED CENTER BASIC"<<std::endl; return a_redCenterBasic.get();
 				case 2: /* Run */ std::cout<<"RED CENTER RUN"<<std::endl; return a_redCenterRun.get();
 				case 3: /* Advanced */ std::cout<<"RED CENTER ADVANCED"<<std::endl; return a_redCenterAdvanced.get();
+				case 4: /* Delay */ std::cout<<"RED CENTER BASIC ( DELAY )"<<std::endl; return a_redCenterBasic.get();
 			}
-			case 3: /* Right */ switch(c_type.GetSelected()){
-				case 1: /* Basic */ std::cout<<"RED RIGHT BASIC"<<std::endl; return a_redRightBasic.get();
-				case 2: /* Run */ std::cout<<"RED RIGHT RUN"<<std::endl; return a_redRightRun.get();
-				case 3: /* Advanced */ std::cout<<"RED RIGHT BASIC ( ADVANCED )"<<std::endl; return a_redRightBasic.get();
+			case 3: /* Source */ switch(c_type.GetSelected()){
+				case 1: /* Basic */ std::cout<<"RED SOURCE BASIC"<<std::endl; return a_redSourceBasic.get();
+				case 2: /* Run */ std::cout<<"RED SOURCE RUN"<<std::endl; return a_redSourceRun.get();
+				case 3: /* Advanced */ std::cout<<"RED SOURCE BASIC ( ADVANCED )"<<std::endl; return a_redSourceBasic.get();
+				case 4: /* Delay */ std::cout<<"RED SOURCE BASIC ( DELAY )"<<std::endl; return a_redSourceBasic.get();
 			}
 		}
 	}else if((frc::DriverStation::GetAlliance() == frc::DriverStation::Alliance::kBlue && c_allianceOverride.GetSelected() != 1) || c_allianceOverride.GetSelected() == 2) {
 		// BLUE alliance autonomous
 		switch(c_position.GetSelected()){
-			case 1: /* Left */ switch(c_type.GetSelected()){
-				case 1: /* Basic */ std::cout<<"BLUE LEFT BASIC"<<std::endl; return a_blueLeftBasic.get();
-				case 2: /* Run */ std::cout<<"BLUE LEFT RUN"<<std::endl; return a_blueLeftRun.get();
-				case 3: /* Advanced */ std::cout<<"BLUE LEFT BASIC ( ADVANCED )"<<std::endl; return a_blueLeftBasic.get();
+			case 1: /* Amp */ switch(c_type.GetSelected()){
+				case 1: /* Basic */ std::cout<<"BLUE AMP BASIC"<<std::endl; return a_blueAmpBasic.get();
+				case 2: /* Run */ std::cout<<"BLUE AMP RUN"<<std::endl; return a_blueAmpRun.get();
+				case 3: /* Advanced */ std::cout<<"BLUE AMP BASIC ( ADVANCED )"<<std::endl; return a_blueAmpBasic.get();
+				case 4: /* Delay */ std::cout<<"BLUE AMP BASIC ( DELAY )"<<std::endl; return a_blueAmpBasic.get();
 			}
 			case 2: /* Center */ switch(c_type.GetSelected()){
 				case 1: /* Basic */ std::cout<<"BLUE CENTER BASIC"<<std::endl; return a_blueCenterBasic.get();
 				case 2: /* Run */ std::cout<<"BLUE CENTER RUN"<<std::endl; return a_blueCenterRun.get();
 				case 3: /* Advanced */ std::cout<<"BLUE CENTER ADVANCED"<<std::endl; return a_blueCenterAdvanced.get();
+				case 4: /* Delay */ std::cout<<"BLUE CENTER BASIC ( DELAY )"<<std::endl; return a_blueCenterBasic.get();
 			}
-			case 3: /* Right */ switch(c_type.GetSelected()){
-				case 1: /* Basic */ std::cout<<"BLUE RIGHT BASIC"<<std::endl; return a_blueRightBasic.get();
-				case 2: /* Run */ std::cout<<"BLUE RIGHT RUN"<<std::endl; return a_blueRightRun.get();
-				case 3: /* Advanced */ std::cout<<"BLUE RIGHT BASIC ( ADVANCED )"<<std::endl; return a_blueRightBasic.get();
+			case 3: /* Source */ switch(c_type.GetSelected()){
+				case 1: /* Basic */ std::cout<<"BLUE SOURCE BASIC"<<std::endl; return a_blueSourceBasic.get();
+				case 2: /* Run */ std::cout<<"BLUE SOURCE RUN"<<std::endl; return a_blueSourceRun.get();
+				case 3: /* Advanced */ std::cout<<"BLUE SOURCE BASIC ( ADVANCED )"<<std::endl; return a_blueSourceBasic.get();
+				case 4: /* Delay */ std::cout<<"BLUE SOURCE BASIC ( DELAY )"<<std::endl; return a_blueSourceBasic.get();
 			}
 		}
 	}

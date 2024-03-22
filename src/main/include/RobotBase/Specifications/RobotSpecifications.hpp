@@ -7,26 +7,15 @@
  * Define a macro for the specific drivetrain or robot you are using to include only that robots specifications.  
  * 
  * Current Robots:
- * - _FullBotKrakens
- * - _GenericFalconsBot
- * - _1822bot
- * 
- * Robots salem wants:
- * - _KrakenOne                     (kraken x60s)
- * - _KrakenTwo                     (kraken x60s)
- * 
- * - _Programming (Salem's swerve)  (kraken x60s drive, falcons angle)
+ * - _1977Comp
+ * - _1822Comp
  */ 
-#define _SalemsBot
+#define _1977Comp
 
-#if defined(_GenericFalconsBot)
-#include "RobotBase/Specifications/GenericFalcons.hpp"
-#elif defined(_FullBotKrakens)
-#include "RobotBase/Specifications/FullBotKrakens.hpp"
-#elif defined(_1822bot)
-#include "RobotBase/Specifications/1822bot.hpp"
-#elif defined(_SalemsBot)
-#include "RobotBase/Specifications/SalemsBot.hpp"
+#if defined(_1977Comp)
+#include "RobotBase/Specifications/1977Comp.hpp"
+#elif defined(_1822Comp)
+#include "RobotBase/Specifications/1822Comp.hpp"
 #else
 #error "No Robot Specified, Please define a robot"
 #endif
