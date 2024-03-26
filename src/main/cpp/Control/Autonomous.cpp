@@ -149,7 +149,7 @@ frc2::CommandPtr AutoRoutine::redCenterAdvanced(DriveSubsystem *drive, NoteMecha
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 20_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 40_deg_per_s, 0});}, {drive}),
 					noteMechanism->PickupNote(),
 					frc2::WaitCommand(0.5_s)
 				),
@@ -160,7 +160,7 @@ frc2::CommandPtr AutoRoutine::redCenterAdvanced(DriveSubsystem *drive, NoteMecha
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({4_fps, -3.5_fps, -15_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({4_fps, -3.5_fps, -25_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -233,7 +233,7 @@ frc2::CommandPtr AutoRoutine::redCenterDelay(DriveSubsystem *drive, NoteMechanis
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 20_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 40_deg_per_s, 0});}, {drive}),
 					noteMechanism->PickupNote(),
 					frc2::WaitCommand(0.5_s)
 				),
@@ -244,7 +244,7 @@ frc2::CommandPtr AutoRoutine::redCenterDelay(DriveSubsystem *drive, NoteMechanis
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({4_fps, -3.5_fps, -15_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({4_fps, -3.5_fps, -25_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -382,7 +382,7 @@ frc2::CommandPtr AutoRoutine::blueCenterAdvanced(DriveSubsystem *drive, NoteMech
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, -30_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, -40_deg_per_s, 0});}, {drive}),
 					noteMechanism->PickupNote(),
 					frc2::WaitCommand(0.5_s)
 				),
@@ -459,6 +459,7 @@ frc2::CommandPtr AutoRoutine::blueCenterDelay(DriveSubsystem *drive, NoteMechani
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -472,7 +473,7 @@ frc2::CommandPtr AutoRoutine::blueCenterDelay(DriveSubsystem *drive, NoteMechani
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, -20_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, -40_deg_per_s, 0});}, {drive}),
 					noteMechanism->PickupNote(),
 					frc2::WaitCommand(0.5_s)
 				),
@@ -483,7 +484,7 @@ frc2::CommandPtr AutoRoutine::blueCenterDelay(DriveSubsystem *drive, NoteMechani
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({4_fps, 4.5_fps, 15_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({4_fps, 4.5_fps, 25_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(1_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -543,6 +544,8 @@ frc2::CommandPtr AutoRoutine::blueCenterDelay(DriveSubsystem *drive, NoteMechani
 	).ToPtr();
 }
 
+
+
 // AMP AUTO ROUTINES
 frc2::CommandPtr AutoRoutine::redAmpBasic(DriveSubsystem *drive, NoteMechanism *noteMechanism) {
     return frc2::SequentialCommandGroup(
@@ -589,7 +592,7 @@ frc2::CommandPtr AutoRoutine::redAmpRun(DriveSubsystem *drive, NoteMechanism *no
 				),
 				drive->ZeroOdometry({0_m, 0_m, 0_deg}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({-7_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});})
@@ -603,6 +606,7 @@ frc2::CommandPtr AutoRoutine::redAmpDelay(DriveSubsystem *drive, NoteMechanism *
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),			
 				frc2::ParallelRaceGroup(
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -615,7 +619,7 @@ frc2::CommandPtr AutoRoutine::redAmpDelay(DriveSubsystem *drive, NoteMechanism *
 				),
 				drive->ZeroOdometry({0_m, 0_m, 0_deg}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({-7_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});})
@@ -675,7 +679,7 @@ frc2::CommandPtr AutoRoutine::blueAmpRun(DriveSubsystem *drive, NoteMechanism *n
 				),
 				drive->ZeroOdometry({0_m, 0_m, 0_deg}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({-7_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});})			
@@ -689,6 +693,7 @@ frc2::CommandPtr AutoRoutine::blueAmpDelay(DriveSubsystem *drive, NoteMechanism 
 				frc2::InstantCommand([drive] { drive->Drive({});}),
 				noteMechanism->ShootNote(),			
 				frc2::ParallelRaceGroup(
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::ParallelRaceGroup(
@@ -701,7 +706,7 @@ frc2::CommandPtr AutoRoutine::blueAmpDelay(DriveSubsystem *drive, NoteMechanism 
 				),
 				drive->ZeroOdometry({0_m, 0_m, 0_deg}),
 				frc2::ParallelRaceGroup(
-					frc2::RunCommand([drive] { drive->Drive({-6_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
+					frc2::RunCommand([drive] { drive->Drive({-7_fps, 0_fps, -8_deg_per_s, 0});}, {drive}),
 					frc2::WaitCommand(3_s)
 				),
 				frc2::InstantCommand([drive] { drive->Drive({});})
@@ -761,7 +766,7 @@ frc2::CommandPtr AutoRoutine::redSourceRun(DriveSubsystem *drive, NoteMechanism 
                     frc2::WaitCommand(1_s) 
                 ),
                 frc2::ParallelRaceGroup(
-                    frc2::RunCommand([drive] { drive->Drive({0_fps, 4_fps, 0_deg_per_s, 0});}, {drive}),
+                    frc2::RunCommand([drive] { drive->Drive({0_fps, 5_fps, 0_deg_per_s, 0});}, {drive}),
                     frc2::WaitCommand(2_s) 
                 ),
                 frc2::ParallelRaceGroup(
@@ -779,6 +784,7 @@ frc2::CommandPtr AutoRoutine::redSourceDelay(DriveSubsystem *drive, NoteMechanis
                 frc2::InstantCommand([drive] { drive->Drive({});}),
                 noteMechanism->ShootNote(),
 				frc2::ParallelRaceGroup(
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
                     frc2::WaitCommand(3_s)
                 ),            
                 frc2::ParallelRaceGroup(
@@ -864,6 +870,7 @@ frc2::CommandPtr AutoRoutine::blueSourceDelay(DriveSubsystem *drive, NoteMechani
                 frc2::InstantCommand([drive] { drive->Drive({});}),
                 noteMechanism->ShootNote(),  
 				frc2::ParallelRaceGroup(
+					frc2::RunCommand([drive] { drive->Drive({0_fps, 0_fps, 0_deg_per_s, 0});}, {drive}),
                     frc2::WaitCommand(3_s)
                 ),          
                 frc2::ParallelRaceGroup(

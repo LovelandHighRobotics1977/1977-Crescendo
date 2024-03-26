@@ -38,12 +38,13 @@ class Driver : public frc2::SubsystemBase {
 
 			// Control Scheme Definitions
 			if(m_Joystick.GetName() == std::string{"X52 H.O.T.A.S."}){
-				field_relative = !m_Joystick.GetRawButton(6);
+				//field_relative = !m_Joystick.GetRawButton(6); // 6 is not working
+				field_relative = !m_Joystick.GetRawButton(1);
 
 				gyro_reset = m_Joystick.GetRawButton(2);
 
-				trigger_one = m_Joystick.GetRawButton(1);
-				trigger_two = m_Joystick.GetRawButton(15);
+				//trigger_one = m_Joystick.GetRawButton(1);
+				//trigger_two = m_Joystick.GetRawButton(15);
 
 				coast_mode_toggle = m_Joystick.GetRawButton(5);
 
@@ -73,6 +74,7 @@ class Driver : public frc2::SubsystemBase {
 				strafe = -m_Joystick.GetX();
 				rotate = m_Joystick.GetTwist();
 			}
+
 
 			// Controller values and optimizations
 
@@ -120,7 +122,7 @@ class Operator : public frc2::SubsystemBase {
 
 			shootNote = m_XboxController.GetRightTriggerAxis() > 0.1;
 
-			setAimToMax = (m_XboxController.GetPOV() != -1);
+			setAimToMax = (m_XboxController.GetPOV() == -1);
 
 			openClimber = m_XboxController.GetLeftBumper();
 			closeClimber = m_XboxController.GetRightBumper();

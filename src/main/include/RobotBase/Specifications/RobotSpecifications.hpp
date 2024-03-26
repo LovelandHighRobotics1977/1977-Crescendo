@@ -10,7 +10,7 @@
  * - _1977Comp
  * - _1822Comp
  */ 
-#define _1977Comp
+#define _1822Comp
 
 #if defined(_1977Comp)
 #include "RobotBase/Specifications/1977Comp.hpp"

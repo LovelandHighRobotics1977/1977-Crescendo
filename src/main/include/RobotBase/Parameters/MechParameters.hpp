@@ -16,7 +16,7 @@ namespace Mechanism {
 				static constexpr auto MIN = 0.001_tr;
 				static constexpr auto SpeakerClose = 0.03_tr;
 				static constexpr auto SpeakerFar = 0.0175_tr;
-				static constexpr auto MAX = 0.101319_tr;
+				static constexpr auto MAX = 0.09_tr;
 			}
 			namespace AutoAim {
 				static constexpr auto heightOffset = units::inch_t{ 3 };
