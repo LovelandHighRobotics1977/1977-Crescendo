@@ -1,9 +1,11 @@
 #include "Control/Autonomous.hpp"
+#include vector;
 
 /*
 Run : Shoot once and skedaddle ( In center : goes under the stage )
 Basic : Shoot once, pickup and shoot, and skedaddle ( ONLY WORKS ON CENTER )
-Advanced : Score as much as possible while still exiting ( ONLY WORKS ON CENTER ) ( UNRELIABLE )
+Advanced 
+: Score as much as possible while still exiting ( ONLY WORKS ON CENTER ) ( UNRELIABLE )
 Delay : Shoot, Wait 3 seconds, Do most advanced auto
 Maximum : Score as much as possible ( CANNOT EXIT ) ( ONLY WORKS ON CENTER )
 */
@@ -54,6 +56,135 @@ frc2::CommandPtr AutoRoutine::sampleAuto(DriveSubsystem *drive, NoteMechanism *n
 	).ToPtr();
 }
 */
+
+
+
+void convertCode(std::vector<float> routine){
+	for(int i = 0; i < routine.size(); i+6){
+
+		//different actions based on whether the note is being picked up, shot, or nothing
+		if(routine[i] == 1){
+			frc2::RunCommand([drive] { drive->Drive({routine[i+1], routine[i+2], routine[i+3], routine[i+4]});}, {drive}),
+			noteMechanism->PickupNote(),
+		frc2::WaitCommand(routine[i+5]);
+		}else if(routine[i] == 2){
+			frc2::RunCommand([drive] { drive->Drive({routine[i+1], routine[i+2], routine[i+3], routine[i+4]});}, {drive}),
+			noteMechanism->ShootNote(),
+		frc2::WaitCommand(routine[i+5]);
+		}else{
+			frc2::RunCommand([drive] { drive->Drive({routine[i+1], routine[i+2], routine[i+3], routine[i+4]});}, {drive}),
+			frc2::WaitCommand(routine[i+5]);
+		}
+
+	}
+
+
+std::vector<float> code;
+
+void switchStatement(std::string runType){
+
+
+switch(runType){
+
+case 'rcb':
+	code = {2,0,0,0,0,1, 0,0,1,0,0,1, 1,-6,0,0,0,1, 1,0,0,0,0,0.25, 2,0,0,0,0,0.75, 0,-1.5,-3,0,0,2, 1,-6.5,0,0,0,2};
+break;
+
+case 'rcr':
+	code = {2,0,0,0,0,1, 0,0,1.25,0,0,1, 1,-6,0,0,0,1, 1,0,0,0,0,0.25, 0,-4,0,0,0,1, 0,-2,2,0,0,1, 0,-5,0,0,0,2 };
+break;
+	
+case 'rca':
+	code = {2,0,0,0,0,1, 0,0,2,0,0,1, 1,-5,0,0,0,1, 0,0,0,0,0,0, 1,0,0,40,0,0.5, 0,0,0,0,0,0.5, 0,4,-3.5,-25,0,1, 1,-4,0,0,0,1, 1,0,0,0,0,0.5, 2,0,0,0,0,0.75, 0,4,-3.5,0,0,1, 1,-4,0,0,0,1, 1,0,0,0,0,0.5, 0,0,0,0,0,0.75, 0,0,0,-25,0,1, 2,0,0,0,0,0.75, 0,-6,0,25,0,1, 0,-6,0,0,0,2, 0,0,0,0,0,0};
+break;
+	
+case 'rcd':
+	code = {};
+break;
+
+case 'bcb':
+	code = {};
+break;
+
+case 'bcr':
+	code = {};
+break;
+
+case 'bca':
+	code = {};
+break;
+
+case 'bcd':
+	code = {};
+break;
+
+case 'rab':
+	code = {};
+break;
+
+case 'rar':
+	code = {};
+break;
+
+case 'rad':
+	code = {};
+break;
+
+case 'bab':
+	code = {};
+break;
+
+case 'bar':
+	code = {};
+break;
+
+case 'bad':
+	code = {};
+break;
+
+case 'rsb':
+	code = {};
+break;
+
+case 'rsr':
+	code = {};
+break;
+
+case 'rsd':
+	code = {};
+break;
+
+case 'bsb':
+	code = {};
+break;
+
+case 'bsr':
+	code = {};
+break;
+
+case 'bsd':
+	code = {};
+break;
+
+case 'onlyScore':
+	code = {};
+break;
+
+case 'onlyRun':
+	code = {};
+break;
+
+default:
+cout<< "idk how you missed all those other conditions bro";
+}
+
+convertCode(code);
+
+}
+}
+
+
+
 
 // CENTER AUTO ROUTINES
 frc2::CommandPtr AutoRoutine::redCenterBasic(DriveSubsystem *drive, NoteMechanism *noteMechanism) {
