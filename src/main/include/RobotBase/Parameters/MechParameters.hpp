@@ -8,6 +8,8 @@ namespace Mechanism {
 	namespace Shooter {
 		static constexpr int Top = 15;
 		static constexpr int Bottom = 16;
+		static constexpr int Limit1 = 1;
+		static constexpr int Limit2 = 2;
 		namespace Angle {
 			static constexpr int Winch = 17;
 			static constexpr int Encoder = 19;

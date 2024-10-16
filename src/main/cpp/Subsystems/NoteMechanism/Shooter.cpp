@@ -11,19 +11,23 @@ Shooter::Shooter(){
     m_shooterAngleEncoder.GetConfigurator().Apply(angleEncoderConfig);
 
     angleMotorConfig.Slot0.kP = 100;
-    angleMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Coast);
+    angleMotorConfig.MotorOutput.WithNeutralMode(ctre::phoenix6::signals::NeutralModeValue::Brake);
     angleMotorConfig.Feedback.WithRemoteCANcoder(m_shooterAngleEncoder);
     angleMotorConfig.MotorOutput.Inverted = true;
     m_shooterAngle.GetConfigurator().Apply(angleMotorConfig);
 }
 
 void Shooter::setShooter(double speed){
-	m_leftShooter.Set(speed * .75);   // bottom
-    m_rightShooter.Set(-speed * .75);     // top
+	m_leftShooter.Set(speed * 1);   // bottom
+    m_rightShooter.Set(-speed * 1);     // top
 }
 
 void Shooter::setShooterAngle(units::turn_t angle){
+   
     m_shooterAngle.SetControl(ctre::phoenix6::controls::PositionDutyCycle{
         max(Mechanism::Shooter::Angle::Preset::MIN, min(angle, Mechanism::Shooter::Angle::Preset::MAX))
     });
+   
+
+    //Add in check for if one switch is pressed and the angle is above a certain value, or another switch and below
 }

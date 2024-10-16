@@ -32,45 +32,54 @@ frc2::SequentialCommandGroup NoteMechanism::ShootNote(){
 	);
 }
 
-void NoteMechanism::AngleShooter(bool override){
+void NoteMechanism::AngleShooter(bool override, bool shutdown){
 	double tagID = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tid", -1); 
-	if(frc::RobotController::GetTeamNumber() == 1822){
+	if(frc::RobotController::GetTeamNumber() == 1822 || shutdown){
 		// Bot is 1822, DO NOT SET SHOOTER ANGLE
-	}else if(frc::RobotController::GetTeamNumber() == 1977 && !frc::DriverStation::IsAutonomous()){
-		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
-	}else if(override || (tagID == -1)){
+	/*}else if(frc::RobotController::GetTeamNumber() == 1977 && !frc::DriverStation::IsAutonomous()){
+		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);*/
+	}else if(override == true || (tagID == -1)){
 		// No tag detected or override enabled, set angle to max
-		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
+		angleMax();
 	}else if((tagID == 3) || (tagID == 4)){
 		// Red speaker tag detected, run "auto aim computations"
-		/**
-		 * This complex function takes the position of the robot, and the red speaker, calculates the distance to the speaker,
-		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
-		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
-		*/
-		double distanceToSpeaker = std::sqrt(
-			std::pow(units::meter_t{652_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[0],2) + 
-			std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
-		);
-		m_shooter.setShooterAngle( units::turn_t{ 
-			units::radian_t{ ( std::atan( units::meter_t{ ( 82_in + Mechanism::Shooter::Angle::AutoAim::heightOffset ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
-		});
+		double distanceToSpeaker = getDistance(652_in);
+
+		angleSet(distanceToSpeaker);
+
 	}else if((tagID = 7) || (tagID == 8)){
         // Blue speaker tag detected, run "auto aim computations"
+		double distanceToSpeaker = getDistance(-1.5_in);
+
+		angleSet(distanceToSpeaker);
+		
+	}else{
+		// Unknown Tag Detected, set to max angle
+
+		angleMax();
+		
+	}
+}
+//Add use the log to determine at what point the arm moves in a different direction, then add if statements for the limit switch and that distance
+double NoteMechanism::getDistance(units::inch_t value){
 		/**
-		 * This complex function takes the position of the robot, and the blue speaker, calculates the distance to the speaker,
+		 * This complex function takes the position of the robot, and the speaker detected based on value, calculates the distance to the speaker,
 		 * and using the distance and known height differential, uses inverse trig to calculate the angle to the speaker.  
 		 * Then, the angle is reduced by 23 degrees to account for the zero angle of the shooter not being at 0 degrees, and sent to the motor
 		*/
-		double distanceToSpeaker = std::sqrt(
-			std::pow(units::meter_t{-1.5_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[0],2) +
+	return std::sqrt(
+			std::pow(units::meter_t{value}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[0],2) +
 			std::pow(units::meter_t{218_in}.value() - nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumberArray("botpose_wpiblue",{})[1],2)
-		);
-		m_shooter.setShooterAngle( units::turn_t{ 
-			units::radian_t{ ( std::atan( units::meter_t{ (82_in + Mechanism::Shooter::Angle::AutoAim::heightOffset ) }.value() / ( distanceToSpeaker )))} - units::radian_t{23_deg}
-		});
-	}else{
-		// Unknown Tag Detected, set to max angle
-		m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
-	}
+	);
 }
+void NoteMechanism::angleSet(double dist){
+	frc::SmartDashboard::PutNumber("ditance", dist);
+	m_shooter.setShooterAngle( units::turn_t{ 
+		units::radian_t{ ( std::atan( units::meter_t{ ( 82_in + Mechanism::Shooter::Angle::AutoAim::heightOffset ) }.value() / ( dist )))} - units::radian_t{23_deg}
+	});
+}
+
+void NoteMechanism::angleMax(){
+	m_shooter.setShooterAngle(Mechanism::Shooter::Angle::Preset::MAX);
+}
+

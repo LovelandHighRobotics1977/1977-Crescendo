@@ -27,6 +27,9 @@ class Shooter : public frc2::SubsystemBase {
 	    ctre::phoenix6::configs::TalonFXConfiguration shooterMotorConfig{};
 		ctre::phoenix6::configs::TalonFXConfiguration angleMotorConfig{};
 		ctre::phoenix6::configs::CANcoderConfiguration angleEncoderConfig{};
+
+		frc::DigitalInput m_armUpLimitSwitch{Mechanism::Shooter::Limit1};
+		frc::DigitalInput m_armDownLimitSwitch{Mechanism::Shooter::Limit2};
 	
 };
 

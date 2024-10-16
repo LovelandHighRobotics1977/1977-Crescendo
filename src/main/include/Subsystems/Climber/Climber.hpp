@@ -10,7 +10,7 @@ class Climber : public frc2::SubsystemBase {
 
 		frc2::StartEndCommand OpenClimber();
 		frc2::FunctionalCommand CloseClimber();
-
+		
 	private:
 
         Actuator m_actuator;
