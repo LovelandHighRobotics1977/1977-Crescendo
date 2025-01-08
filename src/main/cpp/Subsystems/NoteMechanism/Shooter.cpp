@@ -18,8 +18,8 @@ Shooter::Shooter(){
 }
 
 void Shooter::setShooter(double speed){
-	m_leftShooter.Set(speed * 1);   // bottom
-    m_rightShooter.Set(-speed * 1);     // top
+	m_leftShooter.Set(-speed * .5);   // bottom or front
+    m_rightShooter.Set(speed * .75);     // top or back
 }
 
 void Shooter::setShooterAngle(units::turn_t angle){
